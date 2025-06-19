@@ -20,8 +20,6 @@ export default function Navbar() {
             <small className="block text-xs text-gray-600">FUNDACION</small>
           </div>
         </a>
-
-        {/* Botón hamburguesa */}
         <button
           className="text-gray-700 lg:hidden focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
@@ -49,8 +47,6 @@ export default function Navbar() {
             )}
           </svg>
         </button>
-
-        {/* Menú de navegación */}
         <div
           className={`w-full lg:flex lg:items-center lg:w-auto ${
             isOpen ? "block" : "hidden"
@@ -58,7 +54,7 @@ export default function Navbar() {
         >
           <ul className="flex flex-col mt-4 lg:flex-row lg:space-x-6 lg:mt-0 text-gray-700 font-medium">
             <li>
-              <a href="" className="hover:text-blue-500 text-blue-500">
+              <a href="" className="text-blue-500 hover:text-blue-500 ">
                 Inicio
               </a>
             </li>
