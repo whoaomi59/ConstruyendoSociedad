@@ -1,7 +1,7 @@
 const data = [
   {
     id: 1,
-    img: "images/slide/volunteer-helping-with-donation-box.jpg",
+    img: "images/slide/medium-shot-people-collecting-donations.jpg",
     title: "be a Kind Heart",
     label:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, nostrum non?",
@@ -15,7 +15,7 @@ const data = [
   },
   {
     id: 3,
-    img: "images/slide/medium-shot-people-collecting-donations.jpg",
+    img: "images/slide/volunteer-helping-with-donation-box.jpg",
     title: "be a Kind Heart",
     label:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, nostrum non?",
