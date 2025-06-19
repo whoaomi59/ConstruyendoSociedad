@@ -1,97 +1,117 @@
+import { useState } from "react";
+
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <nav class="navbar navbar-expand-lg bg-blue shadow-lg">
-      <div class="container">
-        <a class="navbar-brand" href="/">
+    <nav className="shadow-lg p-3 bg-white sticky top-0 z-50">
+      <div className="container mx-auto flex flex-wrap items-center justify-between">
+        {/* Logo + Nombre */}
+        <a href="/" className="flex items-center space-x-3">
           <img
             src="./img/logos/logo 1.png"
-            class="logo img-fluid"
             alt="CONSTRUYENDO SOCIEDAD"
+            className="h-12 w-auto"
           />
-          <span className="text-blue-500">
-            CONSTRUYENDO SOCIEDAD
-            <small>Fundacion</small>
-          </span>
+          <div className="text-left">
+            <span className="block text-lg font-semibold text-blue-500">
+              CONSTRUYENDO SOCIEDAD
+            </span>
+            <small className="block text-xs text-gray-600">FUNDACION</small>
+          </div>
         </a>
 
+        {/* Botón hamburguesa */}
         <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          className="text-gray-700 lg:hidden focus:outline-none"
+          onClick={() => setIsOpen(!isOpen)}
         >
-          <span class="navbar-toggler-icon"></span>
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {isOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link click-scroll" href="#top">
-                Home
+        {/* Menú de navegación */}
+        <div
+          className={`w-full lg:flex lg:items-center lg:w-auto ${
+            isOpen ? "block" : "hidden"
+          }`}
+        >
+          <ul className="flex flex-col mt-4 lg:flex-row lg:space-x-6 lg:mt-0 text-gray-700 font-medium">
+            <li>
+              <a href="" className="hover:text-blue-500 text-blue-500">
+                Inicio
               </a>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link click-scroll" href="#section_2">
-                About
+            <li>
+              <a href="" className="hover:text-blue-500">
+                Nosotros
               </a>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link click-scroll" href="#section_3">
-                Causes
+            <li>
+              <a href="" className="hover:text-blue-500">
+                Causa
               </a>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link click-scroll" href="#section_4">
-                Volunteer
+            <li>
+              <a href="" className="hover:text-blue-500">
+                Voluntario
               </a>
             </li>
-
-            <li class="nav-item dropdown">
+            <li className="relative group">
               <a
-                class="nav-link click-scroll dropdown-toggle"
                 href="#section_5"
-                id="navbarLightDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                className="hover:text-blue-500 cursor-pointer"
               >
                 News
               </a>
-
-              <ul
-                class="dropdown-menu dropdown-menu-light"
-                aria-labelledby="navbarLightDropdownMenuLink"
-              >
+              <ul className="absolute left-0 mt-2 hidden bg-white border rounded shadow-md group-hover:block z-10">
                 <li>
-                  <a class="dropdown-item" href="news.html">
+                  <a
+                    href="news.html"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
                     News Listing
                   </a>
                 </li>
-
                 <li>
-                  <a class="dropdown-item" href="news-detail.html">
+                  <a
+                    href="news-detail.html"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
                     News Detail
                   </a>
                 </li>
               </ul>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link click-scroll" href="#section_6">
+            <li>
+              <a href="#section_6" className="hover:text-blue-500">
                 Contact
               </a>
             </li>
-
-            <li class="nav-item ms-3">
+            <li>
               <a
-                class="nav-link custom-btn custom-border-btn btn"
                 href="donate.html"
+                className=" px-4 py-2 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-white transition"
               >
                 Donate
               </a>

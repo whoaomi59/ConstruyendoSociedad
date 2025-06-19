@@ -1,3 +1,5 @@
+import * as Icons from "lucide-react";
+
 export default function Header() {
   return (
     <header className="site-header bg-blue-500">
@@ -5,13 +7,11 @@ export default function Header() {
         <div class="row">
           <div class="col-lg-8 col-12 d-flex flex-wrap">
             <p class="d-flex me-4 mb-0">
-              <i class="bi-geo-alt me-2"></i>
-              Akershusstranda 20, 0150 Oslo, Norway
+              <Icons.Telescope className=" me-2 w-5 " />
+              San Agustin Huila Colombia, 2025
             </p>
-
             <p class="d-flex mb-0">
-              <i class="bi-envelope me-2"></i>
-
+              <Icons.Mails className=" me-2 w-5 " />
               <a href="mailto:info@company.com">info@company.com</a>
             </p>
           </div>
