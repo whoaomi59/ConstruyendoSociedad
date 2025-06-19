@@ -22,7 +22,7 @@ export default function Navbar() {
           </div>
         </a>
         <button
-          className="text-gray-700 lg:hidden focus:outline-none"
+          className="text-gray-700 lg:hidden p-2 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <Icons.X /> : <Icons.TableOfContents />}
