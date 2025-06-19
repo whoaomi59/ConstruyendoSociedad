@@ -530,7 +530,7 @@ strong {
   SITE HEADER              
 -----------------------------------------*/
 .site-header {
-  background: var(--primary-color);
+  background: #155DFC;
   padding-top: 15px;
   padding-bottom: 10px;
 }
