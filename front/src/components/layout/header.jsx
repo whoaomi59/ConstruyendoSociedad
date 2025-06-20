@@ -2,7 +2,7 @@ import * as Icons from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="site-header bg-blue-500">
+    <header className="site-header">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-12 d-flex flex-wrap">

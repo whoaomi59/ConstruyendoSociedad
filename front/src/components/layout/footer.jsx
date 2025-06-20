@@ -11,7 +11,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white pt-12">
+    <footer className="bg-gray-700 text-white pt-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap">
           {/* Logo */}
