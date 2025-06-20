@@ -49,7 +49,7 @@ export default function Section() {
                 />
 
                 <p class="featured-block-text">
-                  Haz una<strong>donación</strong>
+                  Haz una <strong>donación</strong>
                 </p>
               </a>
             </div>
@@ -65,7 +65,7 @@ export default function Section() {
                 />
 
                 <p class="featured-block-text">
-                  <strong>Programa</strong> de Becas
+                  <strong>Programa</strong> de estudio
                 </p>
               </a>
             </div>

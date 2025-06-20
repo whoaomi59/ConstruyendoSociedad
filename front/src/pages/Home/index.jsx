@@ -24,7 +24,7 @@ export default function Home() {
           <div class="container">
             <div class="row">
               <div class="col-lg-8 col-12 mx-auto">
-                <h2 class="mb-lg-3">Happy Customers</h2>
+                <h2 class="mb-lg-3">Clientes satisfechos</h2>
 
                 <div
                   id="testimonial-carousel"
@@ -147,7 +147,7 @@ export default function Home() {
             <div class="row">
               <div class="col-lg-4 col-12 ms-auto mb-5 mb-lg-0">
                 <div class="contact-info-wrap">
-                  <h2>Get in touch</h2>
+                  <h2>Ponte en contacto con nosotros</h2>
 
                   <div class="contact-image-wrap d-flex flex-wrap">
                     <img
@@ -157,19 +157,19 @@ export default function Home() {
                     />
 
                     <div class="d-flex flex-column justify-content-center ms-3">
-                      <p class="mb-0">Clara Barton</p>
+                      <p class="mb-0">Anna</p>
                       <p class="mb-0">
-                        <strong>HR & Office Manager</strong>
+                        <strong>Gerente de Recursos Humanos y Oficina</strong>
                       </p>
                     </div>
                   </div>
 
                   <div class="contact-info">
-                    <h5 class="mb-3">Contact Infomation</h5>
+                    <h5 class="mb-3">Información de contacto</h5>
 
                     <p class="d-flex mb-2">
                       <i class="bi-geo-alt me-2"></i>
-                      Akershusstranda 20, 0150 Oslo, Norway
+                      San Agustin Huila
                     </p>
 
                     <p class="d-flex mb-2">
@@ -180,13 +180,8 @@ export default function Home() {
 
                     <p class="d-flex">
                       <i class="bi-envelope me-2"></i>
-
                       <a href="mailto:info@yourgmail.com">donate@charity.org</a>
                     </p>
-
-                    <a href="#" class="custom-btn btn mt-3">
-                      Get Direction
-                    </a>
                   </div>
                 </div>
               </div>
@@ -201,8 +196,8 @@ export default function Home() {
                   <h2>Contact form</h2>
 
                   <p class="mb-4">
-                    Or, you can just send an email:
-                    <a href="#">info@charity.org</a>
+                    O simplemente puedes enviar un correo electrónico:
+                    <a href="#"> info@charity.org </a>
                   </p>
                   <div class="row">
                     <div class="col-lg-6 col-md-6 col-12">
@@ -211,7 +206,7 @@ export default function Home() {
                         name="first-name"
                         id="first-name"
                         class="form-control"
-                        placeholder="Jack"
+                        placeholder="Nombre"
                         required
                       />
                     </div>
@@ -222,7 +217,7 @@ export default function Home() {
                         name="last-name"
                         id="last-name"
                         class="form-control"
-                        placeholder="Doe"
+                        placeholder="Apellido"
                         required
                       />
                     </div>
@@ -234,7 +229,7 @@ export default function Home() {
                     id="email"
                     pattern="[^ @]*@[^ @]*"
                     class="form-control"
-                    placeholder="Jackdoe@gmail.com"
+                    placeholder="Correo Electronico"
                     required
                   />
 
@@ -243,11 +238,11 @@ export default function Home() {
                     rows="5"
                     class="form-control"
                     id="message"
-                    placeholder="What can we help you?"
+                    placeholder="¿En qué podemos ayudarte?"
                   ></textarea>
 
                   <button type="submit" class="form-control">
-                    Send Message
+                    Enviar mensaje
                   </button>
                 </form>
               </div>

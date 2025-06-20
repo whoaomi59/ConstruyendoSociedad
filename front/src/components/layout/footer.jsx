@@ -11,7 +11,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-700 text-white pt-12">
+    <footer className="bg-gray-800 text-white pt-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap">
           {/* Logo */}
@@ -19,10 +19,9 @@ export default function Footer() {
             <img
               src="./img/logos/logo 1.png"
               alt="Logo"
-              className="h-16 w-auto"
+              className="h-40 w-auto"
             />
           </div>
-
           {/* Quick Links */}
           <div className="w-full md:w-1/2 lg:w-1/3 mb-6">
             <h5 className="text-blue-500 text-lg font-semibold mb-4">
@@ -47,11 +46,10 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-
           {/* Contact Info */}
           <div className="w-full lg:w-1/3">
             <h5 className="text-white text-lg font-semibold mb-4">
-              Contact Information
+              Información del contacto
             </h5>
             <div className="space-y-3 text-sm">
               <p className="flex items-center gap-2">
@@ -73,12 +71,6 @@ export default function Footer() {
                 <MapPin size={16} className="mt-0.5" />
                 Akershusstranda 20, 0150 Oslo, Norway
               </p>
-              <a
-                href="#"
-                className="inline-block mt-3 px-4 py-2 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white rounded transition"
-              >
-                Get Direction
-              </a>
             </div>
           </div>
         </div>
@@ -87,21 +79,7 @@ export default function Footer() {
       {/* Footer Bottom */}
       <div className="mt-10 border-t border-gray-700 pt-6">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-center md:text-left">
-            © 2036{" "}
-            <a href="#" className="text-blue-400 hover:underline">
-              Kind Heart
-            </a>{" "}
-            Charity Org. Design:{" "}
-            <a
-              href="https://templatemo.com"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-400 hover:underline"
-            >
-              TemplateMo
-            </a>
-          </p>
+          <p className="text-sm text-center md:text-left">© 2025</p>
 
           <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="#" className="hover:text-blue-400">

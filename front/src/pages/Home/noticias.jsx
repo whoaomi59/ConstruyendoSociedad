@@ -1,4 +1,9 @@
-import { CalendarCheck } from "lucide-react";
+import {
+  Calendar,
+  CalendarCheck,
+  MessageSquare,
+  UsersRound,
+} from "lucide-react";
 
 export default function Noticias() {
   return (
@@ -22,11 +27,11 @@ export default function Noticias() {
 
                 <div class="news-category-block">
                   <a href="#" class="category-block-link">
-                    Lifestyle,
+                    Estilo de vida,
                   </a>
 
                   <a href="#" class="category-block-link">
-                    Clothing Donation
+                    donación de ropa
                   </a>
                 </div>
               </div>
@@ -34,23 +39,23 @@ export default function Noticias() {
               <div class="news-block-info">
                 <div class="d-flex mt-2">
                   <div class="news-block-date">
-                    <p>
-                      <i class="bi-calendar4 custom-icon me-1"></i>
-                      October 12, 2036
+                    <p className="flex">
+                      <Calendar className="w-4 mr-2" />
+                      20 de octubre de 2036
                     </p>
                   </div>
 
                   <div class="news-block-author mx-5">
-                    <p>
-                      <i class="bi-person custom-icon me-1"></i>
-                      By Admin
+                    <p className="flex">
+                      <UsersRound className="w-4 mr-2" />
+                      Por Admin
                     </p>
                   </div>
 
                   <div class="news-block-comment">
-                    <p>
-                      <i class="bi-chat-left custom-icon me-1"></i>
-                      32 Comments
+                    <p className="flex">
+                      <MessageSquare className="w-4 mr-2" />
+                      35 comentarios
                     </p>
                   </div>
                 </div>
@@ -58,7 +63,7 @@ export default function Noticias() {
                 <div class="news-block-title mb-2">
                   <h4>
                     <a href="news-detail.html" class="news-block-title-link">
-                      Clothing donation to urban area
+                      Donación de ropa a zona urbana
                     </a>
                   </h4>
                 </div>
@@ -85,15 +90,15 @@ export default function Noticias() {
 
                 <div class="news-category-block">
                   <a href="#" class="category-block-link">
-                    Food,
+                    Comida,
                   </a>
 
                   <a href="#" class="category-block-link">
-                    Donation,
+                    Donación,
                   </a>
 
                   <a href="#" class="category-block-link">
-                    Caring
+                    Cuidado
                   </a>
                 </div>
               </div>
@@ -101,23 +106,23 @@ export default function Noticias() {
               <div class="news-block-info">
                 <div class="d-flex mt-2">
                   <div class="news-block-date">
-                    <p>
-                      <i class="bi-calendar4 custom-icon me-1"></i>
-                      October 20, 2036
+                    <p className="flex">
+                      <Calendar className="w-4 mr-2" />
+                      20 de octubre de 2036
                     </p>
                   </div>
 
                   <div class="news-block-author mx-5">
-                    <p>
-                      <i class="bi-person custom-icon me-1"></i>
-                      By Admin
+                    <p className="flex">
+                      <UsersRound className="w-4 mr-2" />
+                      Por Admin
                     </p>
                   </div>
 
                   <div class="news-block-comment">
-                    <p>
-                      <i class="bi-chat-left custom-icon me-1"></i>
-                      35 Comments
+                    <p className="flex">
+                      <MessageSquare className="w-4 mr-2" />
+                      35 comentarios
                     </p>
                   </div>
                 </div>
@@ -125,7 +130,7 @@ export default function Noticias() {
                 <div class="news-block-title mb-2">
                   <h4>
                     <a href="news-detail.html" class="news-block-title-link">
-                      Food donation area
+                      Área de donación de alimentos
                     </a>
                   </h4>
                 </div>
@@ -223,63 +228,36 @@ export default function Noticias() {
             </div>
 
             <div class="category-block d-flex flex-column">
-              <h5 class="mb-3">Categories</h5>
+              <h5 class="mb-3">Categorías</h5>
 
               <a href="#" class="category-block-link">
-                Drinking water
+                Agua potable
                 <span class="badge">20</span>
               </a>
 
               <a href="#" class="category-block-link">
-                Food Donation
+                Donación de alimentos
                 <span class="badge">30</span>
-              </a>
-
-              <a href="#" class="category-block-link">
-                Children Education
-                <span class="badge">10</span>
-              </a>
-
-              <a href="#" class="category-block-link">
-                Poverty Development
-                <span class="badge">15</span>
-              </a>
-
-              <a href="#" class="category-block-link">
-                Clothing Donation
-                <span class="badge">20</span>
               </a>
             </div>
 
             <div class="tags-block">
-              <h5 class="mb-3">Tags</h5>
+              <h5 class="mb-3">Etiquetas</h5>
 
               <a href="#" class="tags-block-link">
-                Donation
+                Donación
               </a>
 
               <a href="#" class="tags-block-link">
-                Clothing
+                Ropa
               </a>
 
               <a href="#" class="tags-block-link">
-                Food
+                Alimento
               </a>
 
               <a href="#" class="tags-block-link">
-                Children
-              </a>
-
-              <a href="#" class="tags-block-link">
-                Education
-              </a>
-
-              <a href="#" class="tags-block-link">
-                Poverty
-              </a>
-
-              <a href="#" class="tags-block-link">
-                Clean Water
+                Niños
               </a>
             </div>
 
@@ -289,7 +267,7 @@ export default function Noticias() {
               method="get"
               role="form"
             >
-              <h5 class="mb-4">Newsletter Form</h5>
+              <h5 class="mb-4">Formulario de boletín informativo</h5>
 
               <input
                 type="email"
@@ -297,7 +275,7 @@ export default function Noticias() {
                 id="subscribe-email"
                 pattern="[^ @]*@[^ @]*"
                 class="form-control"
-                placeholder="Email Address"
+                placeholder="Correo electronico"
                 required
               />
 
