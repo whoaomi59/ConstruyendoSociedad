@@ -33,8 +33,14 @@ export default function Historia() {
                   <h5 class="mb-3">Nuestra misión</h5>
 
                   <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Pariatur esse similique dignissimos exercitationem.
+                    Contribuir al bienestar y desarrollo integral de las
+                    comunidades urbanas y rurales, priorizando a la población
+                    infantil, juvenil, madres cabeza de hogar y adultos mayores,
+                    mediante programas sociales, culturales, educativos, de
+                    salud física y mental, ambientales, recreativos y de
+                    fortalecimiento comunitario. Promovemos la participación
+                    activa, el empoderamiento ciudadano y la construcción de
+                    entornos sanos, seguros y resilientes.
                   </p>
                 </div>
               </div>
