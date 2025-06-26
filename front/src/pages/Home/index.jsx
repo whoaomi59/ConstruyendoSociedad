@@ -7,7 +7,7 @@ import Section from "./section";
 import Voluntariado from "./voluntariado";
 import Voluntario from "./voluntario";
 
-export default function Home() {
+export default function Home({ empresa }) {
   return (
     <>
       <main>
@@ -169,18 +169,18 @@ export default function Home() {
 
                     <p class="d-flex mb-2">
                       <i class="bi-geo-alt me-2"></i>
-                      San Agustin Huila
+                      {empresa.Ubicacion}
                     </p>
 
                     <p class="d-flex mb-2">
                       <i class="bi-telephone me-2"></i>
 
-                      <a href="tel: 120-240-9600">120-240-9600</a>
+                      <a href="tel: 120-240-9600">{empresa.Telefono}</a>
                     </p>
 
                     <p class="d-flex">
                       <i class="bi-envelope me-2"></i>
-                      <a href="mailto:info@yourgmail.com">donate@charity.org</a>
+                      <a href="mailto:info@yourgmail.com">{empresa.Email}</a>
                     </p>
                   </div>
                 </div>
