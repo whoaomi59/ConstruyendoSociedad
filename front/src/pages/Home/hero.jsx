@@ -1,28 +1,21 @@
-const data = [
-  {
-    id: 1,
-    img: "images/slide/medium-shot-people-collecting-donations.jpg",
-    title: "be a Kind Heart",
-    label:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, nostrum non?",
-  },
-  {
-    id: 2,
-    img: "images/slide/volunteer-selecting-organizing-clothes-donations-charity.jpg",
-    title: "be a Kind Heart",
-    label:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, nostrum non?",
-  },
-  {
-    id: 3,
-    img: "images/slide/volunteer-helping-with-donation-box.jpg",
-    title: "be a Kind Heart",
-    label:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, nostrum non?",
-  },
-];
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function HeroHome() {
+  const [baner, setBaner] = useState([]);
+  useEffect(() => {
+    const Get = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost/ConstruyendoSociedad/API/controllers/baner.php"
+        );
+        return setBaner(response.data);
+      } catch (error) {
+        alert(error);
+      }
+    };
+    Get();
+  }, []);
   return (
     <section class="hero-section hero-section-full-height">
       <div class="container-fluid">
@@ -33,17 +26,25 @@ export default function HeroHome() {
               class="carousel carousel-fade slide"
               data-bs-ride="carousel"
             >
-              <div class="carousel-inner">
-                {data.map((item, index) => (
-                  <div class="carousel-item active" key={index}>
+              <div className="carousel-inner">
+                {baner.map((item, index) => (
+                  <div
+                    className={`carousel-item ${index === 0 ? "active" : ""}`}
+                    key={index}
+                  >
                     <img
-                      src={item.img}
-                      class="carousel-image img-fluid"
-                      alt={item.title}
+                      src={item.Img}
+                      className="carousel-image img-fluid w-100"
+                      alt={item.Nombre}
+                      style={{ objectFit: "cover", height: "500px" }}
                     />
-                    <div class="carousel-caption d-flex flex-column justify-content-end">
-                      <h1>{item.title}</h1>
-                      <p>{item.label}</p>
+                    <div className="carousel-caption d-flex flex-column justify-content-end rounded">
+                      <h1 className="h2 fw-bold text-primary text-wrap">
+                        {item.Nombre}
+                      </h1>
+                      <p className="text-p-color text-wrap">
+                        {item.Descripcion}
+                      </p>
                     </div>
                   </div>
                 ))}

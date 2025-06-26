@@ -1,6 +1,6 @@
 import * as Icons from "lucide-react";
 
-export default function Header() {
+export default function Header({ empresa }) {
   return (
     <header className="site-header">
       <div class="container">
@@ -8,11 +8,11 @@ export default function Header() {
           <div class="col-lg-8 col-12 d-flex flex-wrap">
             <p class="d-flex me-4 mb-0">
               <Icons.Telescope className=" me-2 w-5 " />
-              San Agustin Huila Colombia, 2025
+              {empresa.Ubicacion}
             </p>
             <p class="d-flex mb-0">
               <Icons.Mails className=" me-2 w-5 " />
-              <a href="mailto:info@company.com">info@company.com</a>
+              <a href="mailto:info@company.com">{empresa.Email}</a>
             </p>
           </div>
 

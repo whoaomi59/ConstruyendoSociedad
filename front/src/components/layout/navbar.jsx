@@ -1,22 +1,21 @@
 import { useState } from "react";
 import * as Icons from "lucide-react";
 
-export default function Navbar() {
+export default function Navbar({ empresa }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="shadow-lg p-3 bg-white sticky top-0 z-50">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
-        {/* Logo + Nombre */}
         <a href="/" className="flex items-center space-x-3">
           <img
-            src="./img/logos/logo 1.png"
-            alt="CONSTRUYENDO SOCIEDAD"
+            src={empresa.Logo}
+            alt={empresa.Nombre}
             className="h-12 w-auto"
           />
           <div className="text-left">
             <span className="block text-lg font-semibold text-blue-500">
-              CONSTRUYENDO SOCIEDAD
+              {empresa.Nombre}
             </span>
             <small className="block text-xs text-gray-600">FUNDACION</small>
           </div>
