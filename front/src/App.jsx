@@ -35,7 +35,7 @@ function App() {
       <Header empresa={empresa} />
       <Navbar empresa={empresa} />
       <Home empresa={empresa} />
-      <Footer />
+      <Footer empresa={empresa} />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import * as Icons from "lucide-react";
+import { RoutesHome } from "../../mock/causas";
 
 export default function Navbar({ empresa }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,39 +33,16 @@ export default function Navbar({ empresa }) {
           }`}
         >
           <ul className="flex flex-col mt-4 lg:flex-row lg:space-x-6 lg:mt-0 text-gray-700 font-medium">
-            <li>
-              <a href="" className="text-blue-500 hover:text-blue-500 ">
-                Inicio
-              </a>
-            </li>
-            <li>
-              <a href="" className="hover:text-blue-500">
-                Nosotros
-              </a>
-            </li>
-            <li>
-              <a href="" className="hover:text-blue-500">
-                Causa
-              </a>
-            </li>
-            <li>
-              <a href="" className="hover:text-blue-500">
-                Voluntario
-              </a>
-            </li>
-            <li className="relative group">
-              <a
-                href="#section_5"
-                className="hover:text-blue-500 cursor-pointer"
-              >
-                Noticias
-              </a>
-            </li>
-            <li>
-              <a href="#section_6" className="hover:text-blue-500">
-                Contacto
-              </a>
-            </li>
+            {RoutesHome.map((item) => (
+              <li>
+                <a
+                  href={item.paht}
+                  className="text-blue-500 hover:text-blue-500 "
+                >
+                  {item.nombre}
+                </a>
+              </li>
+            ))}
             <li>
               <a
                 href=""

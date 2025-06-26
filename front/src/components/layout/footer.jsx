@@ -8,39 +8,32 @@ import {
   Linkedin,
   Youtube,
 } from "lucide-react";
+import { RoutesHome } from "../../mock/causas";
 
-export default function Footer() {
+export default function Footer({ empresa }) {
   return (
-    <footer className="bg-gray-800 text-white pt-12">
+    <footer className="bg-orange-300 text-white pt-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap">
-          {/* Logo */}
           <div className="w-full md:w-1/2 lg:w-1/4 mb-6">
             <img
-              src="./img/logos/logo 1.png"
-              alt="Logo"
+              src={empresa.Logo}
+              alt={empresa.Nombre}
               className="h-40 w-auto"
             />
           </div>
-          {/* Quick Links */}
           <div className="w-full md:w-1/2 lg:w-1/3 mb-6">
-            <h5 className="text-blue-500 text-lg font-semibold mb-4">
-              Quick Links
+            <h5 className="text-white text-lg font-semibold mb-4">
+              Enlaces rápidos
             </h5>
             <ul className="space-y-2">
-              {[
-                "Our Story",
-                "Newsroom",
-                "Causes",
-                "Become a volunteer",
-                "Partner with us",
-              ].map((link, i) => (
+              {RoutesHome.map((link, i) => (
                 <li key={i}>
                   <a
-                    href="#"
+                    href={link.paht}
                     className="hover:text-blue-400 transition-colors duration-200"
                   >
-                    {link}
+                    {link.nombre}
                   </a>
                 </li>
               ))}
@@ -55,7 +48,7 @@ export default function Footer() {
               <p className="flex items-center gap-2">
                 <Phone size={16} />
                 <a href="tel:120-240-9600" className="hover:text-blue-400">
-                  120-240-9600
+                  {empresa.Telefono}
                 </a>
               </p>
               <p className="flex items-center gap-2">
@@ -64,23 +57,20 @@ export default function Footer() {
                   href="mailto:donate@charity.org"
                   className="hover:text-blue-400"
                 >
-                  donate@charity.org
+                  {empresa.Email}
                 </a>
               </p>
               <p className="flex items-start gap-2">
                 <MapPin size={16} className="mt-0.5" />
-                Akershusstranda 20, 0150 Oslo, Norway
+                {empresa.Ubicacion}
               </p>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Footer Bottom */}
-      <div className="mt-10 border-t border-gray-700 pt-6">
+      <div className="mt-10 p-5 border-t border-gray-700 pt-6">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-center md:text-left">© 2025</p>
-
+          <p className="flex space-x-4 mt-4 md:mt-0">© 2025</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="#" className="hover:text-blue-400">
               <Twitter />

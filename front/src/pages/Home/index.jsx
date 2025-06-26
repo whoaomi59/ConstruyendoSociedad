@@ -180,7 +180,7 @@ export default function Home({ empresa }) {
 
                     <p class="d-flex">
                       <i class="bi-envelope me-2"></i>
-                      <a href="mailto:info@yourgmail.com">{empresa.Email}</a>
+                      <a href={`mailto:${empresa.Email}`}>{empresa.Email}</a>
                     </p>
                   </div>
                 </div>
@@ -197,7 +197,7 @@ export default function Home({ empresa }) {
 
                   <p class="mb-4">
                     O simplemente puedes enviar un correo electrónico:
-                    <a href="#"> info@charity.org </a>
+                    <a href={`mailto:${empresa.Email}`}>{empresa.Email}</a>
                   </p>
                   <div class="row">
                     <div class="col-lg-6 col-md-6 col-12">
