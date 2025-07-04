@@ -68,7 +68,7 @@ export default function Footer({ empresa }) {
           </div>
         </div>
       </div>
-      <div className="mt-10 p-5 border-t border-gray-700 pt-6">
+      <div className="mt-5 p-2 border-t border-orange-500 pt-6">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
           <p className="flex space-x-4 mt-4 md:mt-0">© 2025</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
