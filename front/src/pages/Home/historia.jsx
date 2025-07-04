@@ -1,25 +1,27 @@
 export default function Historia() {
   return (
-    <section class="section-padding section-bg" id="section_2">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+    <section className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-20" id="section_2">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Imagen */}
+          <div>
             <img
               src="images/group-people-volunteering-foodbank-poor-people.jpg"
-              class="custom-text-box-image img-fluid"
-              alt=""
+              alt="Nuestra historia"
+              className="w-full h-auto rounded-xl shadow-md object-cover"
             />
           </div>
 
-          <div class="col-lg-6 col-12">
-            <div class="custom-text-box">
-              <h2 class="mb-2">Nuestra historia</h2>
-
-              <h5 class="mb-3">
+          {/* Contenido */}
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-800 mb-2">
+                Nuestra historia
+              </h2>
+              <h5 className="text-lg text-gray-600 mb-4">
                 Construyendo Sociedad, organización sin fines de lucro
               </h5>
-
-              <p class="mb-0">
+              <p className="text-sm text-gray-700 leading-relaxed">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
                 amet iste similique adipisci ratione, necessitatibus impedit
                 quisquam beatae dignissimos ullam sit ipsam illo quae, quos
@@ -27,9 +29,11 @@ export default function Historia() {
               </p>
             </div>
 
-            <div class="custom-text-box">
-              <h5 class="mb-3">Nuestra misión</h5>
-              <p class="mb-0">
+            <div>
+              <h5 className="text-lg text-gray-700 font-semibold mb-3">
+                Nuestra misión
+              </h5>
+              <p className="text-sm text-gray-700 leading-relaxed">
                 Contribuir al bienestar y desarrollo integral de las comunidades
                 urbanas y rurales, priorizando a la población infantil, juvenil,
                 madres cabeza de hogar y adultos mayores, mediante programas

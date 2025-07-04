@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as Icons from "lucide-react";
-import { RoutesHome } from "../../mock/causas";
+import { RoutesHome } from "../../mock/axios";
 import Donar from "../../pages/Home/donar";
 
 export default function Navbar({ empresa }) {

@@ -8,7 +8,7 @@ import {
   Linkedin,
   Youtube,
 } from "lucide-react";
-import { RoutesHome } from "../../mock/causas";
+import { RoutesHome } from "../../mock/axios";
 
 export default function Footer({ empresa }) {
   return (
