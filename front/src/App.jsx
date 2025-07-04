@@ -7,16 +7,19 @@ import Navbar from "./components/layout/navbar";
 import Home from "./pages/Home";
 import LoaderPrimary from "./components/content/loader";
 
+export const URL = "http://localhost/ConstruyendoSociedad/API/";
+
 function App() {
   const [empresa, setEmpresa] = useState({});
   const [loader, setLoader] = useState(false);
+
+  axios.defaults.baseURL = URL;
+
   useEffect(() => {
     const Get = async () => {
       try {
         setLoader(true);
-        const response = await axios.get(
-          "http://localhost/ConstruyendoSociedad/API/controllers/empresa.php"
-        );
+        const response = await axios.get("controllers/empresa.php");
         setEmpresa(response.data[0]);
         return setLoader(false);
       } catch (error) {
