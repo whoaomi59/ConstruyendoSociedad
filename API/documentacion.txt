@@ -15,3 +15,7 @@
 #API/controllers/cuentas_bancarias.php // GET,POST.
 #API/controllers/noticias.php // GET,POST.
 #API/controllers/voluntario.php
+
+
+
+SELECT n.ID AS ID_noticias ,Nombre,Descripcion,Etiquetas, Img, n.Estado, noticia_id,Fecha,Usuario FROM noticias_img nm LEFT JOIN noticias n ON n.ID= nm.ID ORDER BY n.ID DESC LIMIT 2;

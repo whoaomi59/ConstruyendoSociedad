@@ -4,8 +4,24 @@ import {
   MessageSquare,
   UsersRound,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Noticias() {
+  const [ultimanoticias, setUltimanoticia] = useState([]);
+
+  useEffect(() => {
+    const UltimaNoticias = async () => {
+      try {
+        const response = await axios.get("controllers/noticias_join.php");
+        return setUltimanoticia(response.data);
+      } catch (error) {
+        console.table(error);
+      }
+    };
+    UltimaNoticias();
+  }, []);
+
   return (
     <section class="news-section section-padding" id="section_5">
       <div class="container">
@@ -15,135 +31,58 @@ export default function Noticias() {
           </div>
 
           <div class="col-lg-7 col-12">
-            <div class="news-block">
-              <div class="news-block-top">
-                <a href="news-detail.html">
-                  <img
-                    src="images/news/medium-shot-volunteers-with-clothing-donations.jpg"
-                    class="news-image img-fluid"
-                    alt=""
-                  />
-                </a>
-
-                <div class="news-category-block">
-                  <a href="#" class="category-block-link">
-                    Estilo de vida,
+            {ultimanoticias.map((item, index) => (
+              <div class="news-block" key={index}>
+                <div class="news-block-top">
+                  <a href="news-detail.html">
+                    <img src={item.Img} class="news-image img-fluid" alt="" />
                   </a>
 
-                  <a href="#" class="category-block-link">
-                    donación de ropa
-                  </a>
-                </div>
-              </div>
-
-              <div class="news-block-info">
-                <div class="d-flex mt-2">
-                  <div class="news-block-date">
-                    <p className="flex">
-                      <Calendar className="w-4 mr-2" />
-                      20 de octubre de 2036
-                    </p>
-                  </div>
-
-                  <div class="news-block-author mx-5">
-                    <p className="flex">
-                      <UsersRound className="w-4 mr-2" />
-                      Por Admin
-                    </p>
-                  </div>
-
-                  <div class="news-block-comment">
-                    <p className="flex">
-                      <MessageSquare className="w-4 mr-2" />
-                      35 comentarios
-                    </p>
-                  </div>
-                </div>
-
-                <div class="news-block-title mb-2">
-                  <h4>
-                    <a href="news-detail.html" class="news-block-title-link">
-                      Donación de ropa a zona urbana
+                  <div class="news-category-block">
+                    <a href="#" class="category-block-link">
+                      {item.Etiquetas}
                     </a>
-                  </h4>
-                </div>
-
-                <div class="news-block-body">
-                  <p>
-                    Lorem Ipsum dolor sit amet, consectetur adipsicing kengan
-                    omeg kohm tokito Professional charity theme based on
-                    Bootstrap
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="news-block mt-3">
-              <div class="news-block-top">
-                <a href="news-detail.html">
-                  <img
-                    src="images/news/medium-shot-people-collecting-foodstuff.jpg"
-                    class="news-image img-fluid"
-                    alt=""
-                  />
-                </a>
-
-                <div class="news-category-block">
-                  <a href="#" class="category-block-link">
-                    Comida,
-                  </a>
-
-                  <a href="#" class="category-block-link">
-                    Donación,
-                  </a>
-
-                  <a href="#" class="category-block-link">
-                    Cuidado
-                  </a>
-                </div>
-              </div>
-
-              <div class="news-block-info">
-                <div class="d-flex mt-2">
-                  <div class="news-block-date">
-                    <p className="flex">
-                      <Calendar className="w-4 mr-2" />
-                      20 de octubre de 2036
-                    </p>
-                  </div>
-
-                  <div class="news-block-author mx-5">
-                    <p className="flex">
-                      <UsersRound className="w-4 mr-2" />
-                      Por Admin
-                    </p>
-                  </div>
-
-                  <div class="news-block-comment">
-                    <p className="flex">
-                      <MessageSquare className="w-4 mr-2" />
-                      35 comentarios
-                    </p>
                   </div>
                 </div>
 
-                <div class="news-block-title mb-2">
-                  <h4>
-                    <a href="news-detail.html" class="news-block-title-link">
-                      Área de donación de alimentos
-                    </a>
-                  </h4>
-                </div>
+                <div class="news-block-info">
+                  <div class="d-flex mt-2">
+                    <div class="news-block-date">
+                      <p className="flex">
+                        <Calendar className="w-4 mr-2" />
+                        {item.Fecha}
+                      </p>
+                    </div>
 
-                <div class="news-block-body">
-                  <p>
-                    Sed leo nisl, posuere at molestie ac, suscipit auctor
-                    mauris. Etiam quis metus elementum, tempor risus vel,
-                    condimentum orci
-                  </p>
+                    <div class="news-block-author mx-5">
+                      <p className="flex">
+                        <UsersRound className="w-4 mr-2" />
+                        {item.Usuario}
+                      </p>
+                    </div>
+
+                    <div class="news-block-comment">
+                      <p className="flex">
+                        <MessageSquare className="w-4 mr-2" />
+                        {item.total_comentarios} comentarios
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="news-block-title mb-2">
+                    <h4>
+                      <a href="news-detail.html" class="news-block-title-link">
+                        {item.Nombre}
+                      </a>
+                    </h4>
+                  </div>
+
+                  <div class="news-block-body">
+                    <p>{item.Descripcion}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
 
           <div class="col-lg-4 col-12 mx-auto">
