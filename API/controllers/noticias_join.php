@@ -24,13 +24,35 @@ if (!isset($conn)) {
 if ($method === 'GET') {
     $action = isset($_GET['action']) ? $_GET['action'] : '';
 
-    if ($action === 'noticias') {
+    if ($action === 'ultimanoticias') {
         $result = $conn->query("
             SELECT n.ID AS ID_noticias, n.Nombre, n.Descripcion, n.Etiquetas, Img, n.Estado, Fecha, Usuario,
             (SELECT COUNT(*) FROM Comentarios c WHERE c.noticia_id = n.ID) AS total_comentarios
             FROM noticias_img nm
             LEFT JOIN noticias n ON n.ID = nm.noticia_id
             ORDER BY n.ID DESC LIMIT 2;
+        ");
+
+        $noticias = [];
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            if (!empty($row['Img'])) {
+                $row['Img'] = "data:image/png;base64," . base64_encode($row['Img']);
+            } else {
+                $row['Img'] = null;
+            }
+            $noticias[] = $row;
+        }
+
+        echo json_encode($noticias);
+    }
+
+      elseif ($action === 'noticiasrecientes') {
+        $result = $conn->query("
+            SELECT n.ID AS ID_noticias, n.Nombre, n.Descripcion, n.Etiquetas, Img, n.Estado, Fecha, Usuario,
+            (SELECT COUNT(*) FROM Comentarios c WHERE c.noticia_id = n.ID) AS total_comentarios
+            FROM noticias_img nm
+            LEFT JOIN noticias n ON n.ID = nm.noticia_id
+            ORDER BY n.ID DESC LIMIT 5;
         ");
 
         $noticias = [];

@@ -10,6 +10,7 @@ import { LoaderComponents } from "../../components/content/loader";
 
 export default function Noticias() {
   const [ultimanoticias, setUltimanoticia] = useState([]);
+  const [noticiasrecientes, setNoticiasrecientes] = useState([]);
   const [loader, setLoader] = useState(false);
 
   useEffect(() => {
@@ -17,10 +18,14 @@ export default function Noticias() {
       try {
         setLoader(true);
         const response = await axios.get(
-          "controllers/noticias_join.php?action=noticias"
+          "controllers/noticias_join.php?action=ultimanoticias"
         );
-        setLoader(false);
-        return setUltimanoticia(response.data);
+        const noticiasrecientes = await axios.get(
+          "controllers/noticias_join.php?action=noticiasrecientes"
+        );
+        setUltimanoticia(response.data);
+        setNoticiasrecientes(noticiasrecientes.data);
+        return setLoader(false);
       } catch (error) {
         console.table(error);
         return setLoader(false);
@@ -119,77 +124,39 @@ export default function Noticias() {
 
             <h5 class="mt-5 mb-3">Noticias recientes</h5>
 
-            <div class="news-block news-block-two-col d-flex mt-4">
-              <div class="news-block-two-col-image-wrap">
-                <a href="news-detail.html">
-                  <img
-                    src="images/news/africa-humanitarian-aid-doctor.jpg"
-                    class="news-image img-fluid"
-                    alt=""
-                  />
-                </a>
-              </div>
-
-              <div class="news-block-two-col-info">
-                <div class="news-block-title mb-2">
-                  <h6>
-                    <a href="news-detail.html" class="news-block-title-link">
-                      Área de donación de alimentos
-                    </a>
-                  </h6>
+            {noticiasrecientes.map((item, index) => (
+              <div
+                class="news-block news-block-two-col d-flex mt-4"
+                key={index}
+              >
+                <div class="news-block-two-col-image-wrap">
+                  <a href="news-detail.html">
+                    <img
+                      src={item.Img}
+                      className="w-full h-full object-cover"
+                      alt={item.Nombre}
+                    />
+                  </a>
                 </div>
 
-                <div class="news-block-date">
-                  <p className="flex">
-                    <CalendarCheck className="w-5 mr-2" />
-                    16 de octubre de 2036
-                  </p>
+                <div class="news-block-two-col-info">
+                  <div class="news-block-title mb-2">
+                    <h6>
+                      <a href="news-detail.html" class="news-block-title-link">
+                        {item.Nombre}
+                      </a>
+                    </h6>
+                  </div>
+
+                  <div class="news-block-date">
+                    <p className="flex">
+                      <CalendarCheck className="w-5 mr-2" />
+                      {item.Fecha}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div class="news-block news-block-two-col d-flex mt-4">
-              <div class="news-block-two-col-image-wrap">
-                <a href="news-detail.html">
-                  <img
-                    src="images/news/close-up-happy-people-working-together.jpg"
-                    class="news-image img-fluid"
-                    alt=""
-                  />
-                </a>
-              </div>
-
-              <div class="news-block-two-col-info">
-                <div class="news-block-title mb-2">
-                  <h6>
-                    <a href="news-detail.html" class="news-block-title-link">
-                      Voluntariado Limpio
-                    </a>
-                  </h6>
-                </div>
-
-                <div class="news-block-date">
-                  <p className="flex">
-                    <CalendarCheck className="w-5 mr-2" />
-                    24 de octubre de 2036
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="category-block d-flex flex-column">
-              <h5 class="mb-3">Categorías</h5>
-
-              <a href="#" class="category-block-link">
-                Agua potable
-                <span class="badge">20</span>
-              </a>
-
-              <a href="#" class="category-block-link">
-                Donación de alimentos
-                <span class="badge">30</span>
-              </a>
-            </div>
+            ))}
 
             <div class="tags-block">
               <h5 class="mb-3">Etiquetas</h5>
