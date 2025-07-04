@@ -6,21 +6,32 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { LoaderComponents } from "../../components/content/loader";
 
 export default function Noticias() {
   const [ultimanoticias, setUltimanoticia] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     const UltimaNoticias = async () => {
       try {
-        const response = await axios.get("controllers/noticias_join.php");
+        setLoader(true);
+        const response = await axios.get(
+          "controllers/noticias_join.php?action=noticias"
+        );
+        setLoader(false);
         return setUltimanoticia(response.data);
       } catch (error) {
         console.table(error);
+        return setLoader(false);
       }
     };
     UltimaNoticias();
   }, []);
+
+  if (loader) {
+    return <LoaderComponents />;
+  }
 
   return (
     <section class="news-section section-padding" id="section_5">

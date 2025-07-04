@@ -9,3 +9,15 @@ export default function LoaderPrimary() {
     </div>
   );
 }
+
+export function LoaderComponents() {
+  return (
+    <div className="w-full h-200 flexx">
+      <img
+        src="./img/loaders/3-dots-bounce.svg"
+        alt="Loader Primary."
+        className="w-40"
+      />
+    </div>
+  );
+}

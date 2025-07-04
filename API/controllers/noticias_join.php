@@ -12,40 +12,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 header("Content-Type: application/json");
 require_once("../config/db.php");
 
-
-
 $method = $_SERVER['REQUEST_METHOD'];
 $db = new Database();
 $conn = $db->connect();
-
 
 if (!isset($conn)) {
     echo json_encode(["error" => "Conexión no definida"]);
     exit;
 }
 
-
-
 if ($method === 'GET') {
-    global $conn;
+    $action = isset($_GET['action']) ? $_GET['action'] : '';
 
-    $result = $conn->query("SELECT n.ID AS ID_noticias, n.Nombre, n.Descripcion, n.Etiquetas, Img, n.Estado, Fecha, Usuario, ( SELECT COUNT(*) FROM Comentarios c WHERE c.noticia_id = n.ID ) AS total_comentarios FROM noticias_img nm LEFT JOIN noticias n ON n.ID = nm.noticia_id ORDER BY n.ID DESC LIMIT 2;");
+    if ($action === 'noticias') {
+        $result = $conn->query("
+            SELECT n.ID AS ID_noticias, n.Nombre, n.Descripcion, n.Etiquetas, Img, n.Estado, Fecha, Usuario,
+            (SELECT COUNT(*) FROM Comentarios c WHERE c.noticia_id = n.ID) AS total_comentarios
+            FROM noticias_img nm
+            LEFT JOIN noticias n ON n.ID = nm.noticia_id
+            ORDER BY n.ID DESC LIMIT 2;
+        ");
 
-    $empresas = [];
-
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        if (!empty($row['Img'])) {
-            $row['Img'] = "data:image/png;base64," . base64_encode($row['Img']);
-        } else {
-            $row['Img'] = null;
+        $noticias = [];
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            if (!empty($row['Img'])) {
+                $row['Img'] = "data:image/png;base64," . base64_encode($row['Img']);
+            } else {
+                $row['Img'] = null;
+            }
+            $noticias[] = $row;
         }
-        $empresas[] = $row;
+
+        echo json_encode($noticias);
     }
 
-    echo json_encode($empresas);
+    elseif ($action === 'detalle' && isset($_GET['id'])) {
+        $id = intval($_GET['id']);
+        $stmt = $conn->prepare("
+            SELECT n.ID AS ID_noticias, n.Nombre, n.Descripcion, n.Etiquetas, Img, n.Estado, Fecha, Usuario,
+            (SELECT COUNT(*) FROM Comentarios c WHERE c.noticia_id = n.ID) AS total_comentarios
+            FROM noticias_img nm
+            LEFT JOIN noticias n ON n.ID = nm.noticia_id
+            WHERE n.ID = ?
+        ");
+        $stmt->execute([$id]);
+
+        $detalle = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($detalle && !empty($detalle['Img'])) {
+            $detalle['Img'] = "data:image/png;base64," . base64_encode($detalle['Img']);
+        }
+
+        echo json_encode($detalle ?: ["error" => "Noticia no encontrada"]);
+    }
+
+    else {
+        echo json_encode(["error" => "Parámetro 'action' no válido"]);
+    }
 }
-
-
 else {
     echo json_encode(["message" => "Método HTTP no soportado"]);
 }
