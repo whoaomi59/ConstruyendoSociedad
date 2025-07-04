@@ -18,7 +18,7 @@ export default function Donar({ OpenModal, setOpenModal }) {
   }, []);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <>
       {OpenModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
           <div className="relative bg-white w-full max-w-4xl p-10 rounded-3xl shadow-2xl">
@@ -65,6 +65,6 @@ export default function Donar({ OpenModal, setOpenModal }) {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

@@ -12,7 +12,7 @@ import { RoutesHome } from "../../mock/causas";
 
 export default function Footer({ empresa }) {
   return (
-    <footer className="bg-orange-300 text-white pt-12">
+    <footer className="bg-orange-400 text-white pt-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap">
           <div className="w-full md:w-1/2 lg:w-1/4 mb-6">
