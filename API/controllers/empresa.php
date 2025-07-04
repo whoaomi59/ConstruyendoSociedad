@@ -66,7 +66,6 @@ elseif ($method === 'POST') {
     ]);
 }
 
-// PUT: Actualizar empresa
 elseif ($method === 'PUT') {
     parse_str(file_get_contents("php://input"), $put);
 
