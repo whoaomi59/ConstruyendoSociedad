@@ -71,7 +71,7 @@ export default function Home({ empresa }) {
                   method="post"
                   role="form"
                 >
-                  <h2>Contact form</h2>
+                  <h2>Formulario de contacto</h2>
 
                   <p class="mb-4">
                     O simplemente puedes enviar un correo electrónico:

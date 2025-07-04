@@ -1,9 +1,11 @@
 import { useState } from "react";
 import * as Icons from "lucide-react";
 import { RoutesHome } from "../../mock/causas";
+import Donar from "../../pages/Home/donar";
 
 export default function Navbar({ empresa }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [OpenModal, setOpenModal] = useState(false);
 
   return (
     <nav className="shadow-lg p-3 bg-white sticky top-0 z-50">
@@ -45,13 +47,14 @@ export default function Navbar({ empresa }) {
             ))}
             <li>
               <a
-                href=""
+                onClick={() => setOpenModal((prev) => !prev)}
                 className="hover:bg-blue-200   px-4 py-2 border border-blue-500 text-blue-500 rounded transition"
               >
                 Donar
               </a>
             </li>
           </ul>
+          <Donar OpenModal={OpenModal} setOpenModal={setOpenModal} />
         </div>
       </div>
     </nav>

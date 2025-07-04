@@ -5,15 +5,15 @@ export const RoutesHome = [
   },
   {
     nombre: "Nosotros",
-    paht: "/",
+    paht: "#section_2",
   },
   {
     nombre: "Causa",
-    paht: "/",
+    paht: "#section_3",
   },
   {
     nombre: "Voluntario",
-    paht: "/",
+    paht: "#section_4",
   },
   {
     nombre: "Noticias",
