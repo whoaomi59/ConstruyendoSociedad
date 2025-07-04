@@ -1,73 +1,105 @@
+import { useState } from "react";
+import axios from "axios";
+
 export default function Voluntariado() {
+  const [Nombre, setNombre] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Comentario, setComentario] = useState("");
+  const [mensaje, setMensaje] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("Nombre", Nombre);
+    formData.append("Email", Email);
+    formData.append("Comentario", Comentario);
+
+    try {
+      const response = await axios.post("controllers/voluntario.php", formData);
+      console.log(response.data);
+      setMensaje("✅ Formulario enviado correctamente");
+    } catch (error) {
+      console.error(error);
+      setMensaje("❌ Error al conectar con el servidor.");
+    }
+  };
+
   return (
-    <section class="volunteer-section section-padding" id="section_4">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-12">
-            <h2 class="text-white mb-4">Voluntario</h2>
+    <section className="volunteer-section section-padding" id="section_4">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-6 col-12">
+            <h2 className="text-white mb-4">Voluntario</h2>
 
             <form
-              class="custom-form volunteer-form mb-5 mb-lg-0"
-              action="#"
-              method="post"
-              role="form"
+              className="custom-form volunteer-form mb-5 mb-lg-0"
+              onSubmit={handleSubmit}
             >
-              <h3 class="mb-4">Conviértete en voluntario hoy</h3>
+              <h3 className="mb-4">Conviértete en voluntario hoy</h3>
 
-              <div class="row">
-                <div class="col-lg-6 col-12">
+              <div className="row">
+                <div className="col-lg-6 col-12">
                   <input
                     type="text"
-                    name="volunteer-name"
-                    id="volunteer-name"
-                    class="form-control"
+                    name="nombre"
+                    className="form-control"
                     placeholder="Nombre Completo"
+                    value={Nombre}
+                    onChange={(e) => setNombre(e.target.value)}
                     required
                   />
                 </div>
 
-                <div class="col-lg-6 col-12">
+                <div className="col-lg-6 col-12">
                   <input
                     type="email"
-                    name="volunteer-email"
-                    id="volunteer-email"
-                    pattern="[^ @]*@[^ @]*"
-                    class="form-control"
-                    placeholder="Correo electronico"
+                    name="email"
+                    className="form-control"
+                    placeholder="Correo electrónico"
+                    value={Email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
               </div>
 
               <textarea
-                name="volunteer-message"
+                name="comentario"
                 rows="3"
-                class="form-control"
-                id="volunteer-message"
-                placeholder="Comentario (Optional)"
+                className="form-control"
+                placeholder="Comentario (Opcional)"
+                value={Comentario}
+                onChange={(e) => setComentario(e.target.value)}
               ></textarea>
 
-              <button type="submit" class="form-control">
-                Submit
+              <button type="submit" className="form-control mt-3">
+                Enviar
               </button>
+
+              {mensaje && (
+                <p className="mt-3 text-white bg-success p-2 rounded">
+                  {mensaje}
+                </p>
+              )}
             </form>
           </div>
 
-          <div class="col-lg-6 col-12">
+          <div className="col-lg-6 col-12">
             <img
               src="images/smiling-casual-woman-dressed-volunteer-t-shirt-with-badge.jpg"
-              class="volunteer-image img-fluid"
+              className="volunteer-image img-fluid"
               alt=""
             />
 
-            <div class="custom-block-body text-center">
-              <h4 class="text-white mt-lg-3 mb-lg-3">
+            <div className="custom-block-body text-center">
+              <h4 className="text-white mt-lg-3 mb-lg-3">
                 Acerca del voluntariado
               </h4>
 
-              <p class="text-white">
+              <p className="text-white">
                 Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg
-                kohm tokito Professional charity theme based
+                kohm tokito.
               </p>
             </div>
           </div>
