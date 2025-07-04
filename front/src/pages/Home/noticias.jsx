@@ -158,7 +158,7 @@ export default function Noticias() {
               </div>
             ))}
 
-            <div class="tags-block">
+            <div class="tags-block mt-5">
               <h5 class="mb-3">Etiquetas</h5>
 
               <a href="#" class="tags-block-link">
