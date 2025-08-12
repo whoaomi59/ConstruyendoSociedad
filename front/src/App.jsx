@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import LoaderPrimary from "./components/content/loader";
 import Layout from "./components/layout/Layout";
 import Login from "./pages/auth/login";
+import Container from "./components/static/container";
 
 export const URL = "http://localhost/ConstruyendoSociedad/API/";
 
@@ -53,7 +54,7 @@ function App() {
           </Route>
 
           {/* Layout admin */}
-          <Route path="/admin" element={<Layout empresa={empresa} />}>
+          <Route path="/admin" element={<Container empresa={empresa} />}>
             <Route path="prueba" element={<div>prueba</div>} />
           </Route>
 
