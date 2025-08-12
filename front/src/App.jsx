@@ -8,6 +8,7 @@ import Navbar from "./components/layout/navbar";
 import Home from "./pages/Home";
 import LoaderPrimary from "./components/content/loader";
 import Layout from "./components/layout/Layout";
+import Login from "./pages/auth/login";
 
 export const URL = "http://localhost/ConstruyendoSociedad/API/";
 
@@ -39,11 +40,25 @@ function App() {
     <>
       <Router>
         <Routes>
+          {/* Ruta de login */}
+          <Route
+            path="/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7da"
+            element={<Login />}
+          />
+
+          {/* Layout principal */}
           <Route path="/" element={<Layout empresa={empresa} />}>
             <Route index element={<Home empresa={empresa} />} />
-            <Route path="/prueba" element={"prueba"} />
+            <Route path="prueba" element={<div>prueba</div>} />
           </Route>
-          <Route path="/*" element={"Not Fount"} />
+
+          {/* Layout admin */}
+          <Route path="/admin" element={<Layout empresa={empresa} />}>
+            <Route path="prueba" element={<div>prueba</div>} />
+          </Route>
+
+          {/* Ruta para no encontrados */}
+          <Route path="*" element={<div>Not Found</div>} />
         </Routes>
       </Router>
     </>
