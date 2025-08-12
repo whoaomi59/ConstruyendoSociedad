@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
-import Footer from "./components/layout/footer";
-import Header from "./components/layout/header";
-import Navbar from "./components/layout/navbar";
 import Home from "./pages/Home";
 import LoaderPrimary from "./components/content/loader";
 import Layout from "./components/layout/Layout";
 import Login from "./pages/auth/login";
 import Container from "./components/static/container";
+import Dashboar from "./pages/admin/dashboard";
+import Usuarios from "./pages/admin/usuarios";
+import NotFount from "./components/static/notFount";
 
 export const URL = "http://localhost/ConstruyendoSociedad/API/";
 
@@ -44,7 +44,7 @@ function App() {
           {/* Ruta de login */}
           <Route
             path="/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7da"
-            element={<Login />}
+            element={<Login empresa={empresa} />}
           />
 
           {/* Layout principal */}
@@ -55,11 +55,12 @@ function App() {
 
           {/* Layout admin */}
           <Route path="/admin" element={<Container empresa={empresa} />}>
-            <Route path="prueba" element={<div>prueba</div>} />
+            <Route path="/admin" element={<Dashboar />} />
+            <Route path="/admin/usuarios" element={<Usuarios />} />
           </Route>
 
           {/* Ruta para no encontrados */}
-          <Route path="*" element={<div>Not Found</div>} />
+          <Route path="*" element={<NotFount empresa={empresa} />} />
         </Routes>
       </Router>
     </>

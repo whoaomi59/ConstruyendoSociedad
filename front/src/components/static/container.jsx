@@ -3,15 +3,20 @@ import * as Icons from "lucide-react";
 import { Outlet } from "react-router-dom";
 
 const menuItems = [
-  { name: "Dashboard", icon: <Icons.House />, href: "#" },
-  { name: "Usuarios", icon: <Icons.User />, href: "#" },
-  { name: "Configuración", icon: <Icons.Settings />, href: "#" },
-  { name: "Reportes", icon: <Icons.ChartPie />, href: "#" },
+  { name: "Dashboard", icon: <Icons.ChartPie />, href: "/admin" },
+  { name: "Empresa", icon: <Icons.House />, href: "/admin/empresa" },
+  { name: "Usuarios", icon: <Icons.User />, href: "/admin/usuarios" },
+  { name: "Noticias", icon: <Icons.Newspaper />, href: "/admin/usuarios" },
+  { name: "Voluntariado", icon: <Icons.Users />, href: "/admin/usuarios" },
+  { name: "Causas", icon: <Icons.Coffee />, href: "/admin/usuarios" },
+  { name: "Configuracion", icon: <Icons.Cog />, href: "/admin/usuarios" },
 ];
 
-export default function Container() {
+export default function Container({ empresa }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  console.log(empresa);
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -31,7 +36,11 @@ export default function Container() {
           `}
         >
           {!sidebarCollapsed && (
-            <span className="text-lg font-bold text-blue-700">AdminPanel</span>
+            <img
+              src={empresa.Logo}
+              alt={empresa.Nombre}
+              className="h-12 w-15"
+            />
           )}
           <button
             onClick={() => {
@@ -111,9 +120,9 @@ export default function Container() {
             >
               {sidebarOpen ? <Icons.X size={24} /> : <Icons.Menu size={24} />}
             </button>
-            <h1 className="text-2xl font-semibold text-gray-700 truncate">
-              Dashboard
-            </h1>
+            <h6 className=" font-semibold text-gray-700 truncate">
+              {empresa.Nombre || "AdminPanel"}
+            </h6>
           </div>
 
           <div className="flex items-center gap-4">
@@ -142,13 +151,6 @@ export default function Container() {
 
         {/* Main Content */}
         <main className="flex-1 p-8 overflow-auto bg-gray-50 min-h-0">
-          <h2 className="text-3xl font-bold mb-6 text-gray-800 truncate">
-            Bienvenido al Panel Administrativo
-          </h2>
-          <p className="text-gray-600 leading-relaxed max-w-3xl">
-            Aquí puedes añadir gráficos, tablas, formularios y cualquier
-            componente que necesites para administrar tu sistema.
-          </p>
           <Outlet />
         </main>
       </div>
