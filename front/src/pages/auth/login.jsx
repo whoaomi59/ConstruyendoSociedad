@@ -21,24 +21,28 @@ export default function Login({ empresa }) {
     try {
       setLoading(true);
       const { data } = await axios.post(
-        "http://localhost/ConstruyendoSociedad/API/controllers/Login.php",
-        { Correo: email, Contraseña: password },
+        "/auth/Login.php",
+        {
+          correo: email,
+          contraseña: password,
+        },
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
           },
         }
       );
-
+      console.log(data);
       if (data.success) {
         setSuccessMsg("Inicio de sesión exitoso.");
         // Aquí puedes guardar el token o redirigir
         // localStorage.setItem("token", data.token);
         // window.location.href = "/dashboard";
       } else {
-        setErrorMsg(data.message || "Credenciales inválidas.");
+        setErrorMsg(data.error || "Credenciales inválidas.");
       }
     } catch (error) {
+      console.log(error);
       setErrorMsg("Error al conectar con el servidor.");
     } finally {
       setLoading(false);

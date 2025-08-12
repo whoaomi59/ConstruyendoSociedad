@@ -1,0 +1,15 @@
+{
+    "name": "admin-sena/api",
+    "autoload": {
+        "psr-4": {
+            "AdminSena\\Api\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "whoaomi59",
+            "email": "whoaomi11@gmail.com"
+        }
+    ],
+    "require": {}
+}
