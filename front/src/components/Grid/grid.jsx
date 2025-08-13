@@ -73,7 +73,7 @@ const Grid = ({
             <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
               <button
                 type="button"
-                className="flex items-center justify-center text-white bg-primary focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 "
+                className="flex items-center justify-center text-white bg-blue-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 "
                 onClick={() => {
                   setEditingItem(null);
                   setIsModalOpen(true);
@@ -88,7 +88,7 @@ const Grid = ({
         <div className="flex items-center space-x-2 p-2">
           <button
             className={`px-4 py-2 rounded ${
-              viewMode === "table" ? "bg-primary text-white" : "bg-gray-200"
+              viewMode === "table" ? "bg-blue-500 text-white" : "bg-gray-200"
             }`}
             onClick={() => setViewMode("table")}
           >
@@ -96,7 +96,7 @@ const Grid = ({
           </button>
           <button
             className={`px-4 py-2 rounded ${
-              viewMode === "cards" ? "bg-primary text-white" : "bg-gray-200"
+              viewMode === "cards" ? "bg-blue-500 text-white" : "bg-gray-200"
             }`}
             onClick={() => setViewMode("cards")}
           >
