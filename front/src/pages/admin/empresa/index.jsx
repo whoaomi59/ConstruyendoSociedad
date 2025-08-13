@@ -31,7 +31,7 @@ export default function Empresa() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-2 sm:p-4">
+    <div className="min-h-screen  p-2 sm:p-4">
       <div className="bg-white rounded-lg shadow-xl pb-8">
         <div className="w-full h-40 sm:h-64">
           <img

@@ -33,11 +33,13 @@ export default function Container({ empresa, decoded }) {
           `}
         >
           {!sidebarCollapsed && (
-            <img
-              src={empresa.Logo}
-              alt={empresa.Nombre}
-              className="h-12 w-15"
-            />
+            <a href="/">
+              <img
+                src={empresa.Logo}
+                alt={empresa.Nombre}
+                className="h-12 w-15"
+              />
+            </a>
           )}
           <button
             onClick={() => {

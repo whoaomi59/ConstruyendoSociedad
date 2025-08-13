@@ -1,19 +1,29 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { LoaderComponents } from "../../components/content/loader";
 
 export default function HeroHome() {
   const [baner, setBaner] = useState([]);
+  const [loader, setloader] = useState(false);
   useEffect(() => {
     const Get = async () => {
       try {
+        setloader(true);
         const response = await axios.get("/controllers/baner.php");
-        return setBaner(response.data);
+        setBaner(response.data);
+        return setloader(false);
       } catch (error) {
-        alert(error);
+        setloader(false);
+        return alert(error);
       }
     };
     Get();
   }, []);
+
+  if (loader) {
+    return <LoaderComponents />;
+  }
+
   return (
     <section class="hero-section hero-section-full-height">
       <div class="container-fluid">
