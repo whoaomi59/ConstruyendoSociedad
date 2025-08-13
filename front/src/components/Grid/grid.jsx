@@ -50,7 +50,7 @@ const Grid = ({
         {module}
       </h1>
       <div class="bg-white  relative shadow-md sm:rounded-lg overflow-hidden">
-        <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+        <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-2 mt-2">
           <div class="w-full md:w-1/2">
             <form class="flex items-center">
               <label for="simple-search" class="sr-only mr-20">
@@ -73,7 +73,7 @@ const Grid = ({
             <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
               <button
                 type="button"
-                className="flex items-center justify-center text-white btn-bg-primary focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 "
+                className="flex items-center justify-center text-white bg-primary focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 "
                 onClick={() => {
                   setEditingItem(null);
                   setIsModalOpen(true);

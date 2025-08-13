@@ -42,7 +42,14 @@ const Form = ({ isOpen, onClose, fields, onSubmit, title, initialValues }) => {
             <X />
           </button>
         </div>
-        <h2 className="text-2xl font-semibold text-gray-700 mb-4">{title}</h2>
+        <h1
+          className="font-semibold text-gray-700 mb-4"
+          style={{
+            fontSize: "30px",
+          }}
+        >
+          {title}
+        </h1>
 
         <form onSubmit={handleSubmit}>
           {fields.map((field) => (

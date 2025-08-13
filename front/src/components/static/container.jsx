@@ -6,7 +6,7 @@ const menuItems = [
   { name: "Dashboard", icon: <Icons.ChartPie />, href: "/admin" },
   { name: "Empresa", icon: <Icons.House />, href: "/admin/empresa" },
   { name: "Usuarios", icon: <Icons.User />, href: "/admin/usuarios" },
-  { name: "Noticias", icon: <Icons.Newspaper />, href: "/admin/usuarios" },
+  { name: "Noticias", icon: <Icons.Newspaper />, href: "/admin/noticias" },
   { name: "Voluntariado", icon: <Icons.Users />, href: "/admin/usuarios" },
   { name: "Causas", icon: <Icons.Coffee />, href: "/admin/usuarios" },
   { name: "Configuracion", icon: <Icons.Cog />, href: "/admin/usuarios" },

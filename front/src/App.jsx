@@ -12,6 +12,7 @@ import Usuarios from "./pages/admin/usuarios";
 import NotFount from "./components/static/notFount";
 import { jwtDecode } from "jwt-decode";
 import Empresa from "./pages/admin/empresa";
+import Noticias from "./pages/admin/noticias";
 
 export const URL = "http://localhost/ConstruyendoSociedad/API/";
 
@@ -72,6 +73,7 @@ function App() {
           <Route index element={<Dashboar />} />
           <Route path="usuarios" element={<Usuarios />} />
           <Route path="empresa" element={<Empresa />} />
+          <Route path="noticias" element={<Noticias />} />
         </Route>
 
         <Route path="*" element={<NotFount empresa={empresa} />} />
