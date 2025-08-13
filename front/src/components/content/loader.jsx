@@ -2,7 +2,7 @@ export default function LoaderPrimary() {
   return (
     <div className="w-full h-200 flexx">
       <img
-        src="./img/loaders/circles.svg"
+        src="/img/loaders/circles.svg"
         alt="Loader Primary."
         className="w-40"
       />
@@ -15,7 +15,7 @@ export function LoaderComponents() {
     <div className="w-full h-200 flexx">
       <img
         src="./img/loaders/3-dots-bounce.svg"
-        alt="Loader Primary."
+        alt="Loader Primary.s"
         className="w-40"
       />
     </div>

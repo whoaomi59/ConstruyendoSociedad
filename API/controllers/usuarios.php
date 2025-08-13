@@ -21,6 +21,27 @@ if (!$conn) {
     exit;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    global $conn;
+
+    $stmt = $conn->query("SELECT * FROM usuarios");
+
+    if ($stmt) {
+        $data = [];
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = $row;
+        }
+        echo json_encode($data);
+    } else {
+        echo json_encode([
+            'error' => true,
+            'message' => 'Error en la consulta.'
+        ]);
+    }
+}
+
+
 if ($method === 'POST') {
     if (!isset($_POST['nombre'], $_POST['correo'], $_POST['rol'], $_POST['contraseña'])) {
         echo json_encode(["message" => "Faltan campos obligatorios"]);
@@ -45,6 +66,4 @@ if ($method === 'POST') {
     echo json_encode([
         "message" => $stmt->execute() ? "Registro creado!" : "Error al crear registro!"
     ]);
-} else {
-    echo json_encode(["message" => "Método HTTP no soportado"]);
 }

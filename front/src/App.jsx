@@ -27,7 +27,6 @@ function App() {
     if (Token) {
       try {
         const decoded = jwtDecode(Token);
-        console.log(decoded);
         return setTokenUser(decoded);
       } catch (error) {
         return console.error("Error decodificando el token:", error);

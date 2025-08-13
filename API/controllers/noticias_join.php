@@ -26,11 +26,7 @@ if ($method === 'GET') {
 
     if ($action === 'ultimanoticias') {
         $result = $conn->query("
-            SELECT n.ID AS ID_noticias, n.Nombre, n.Descripcion, n.Etiquetas, Img, n.Estado, Fecha, Usuario,
-            (SELECT COUNT(*) FROM Comentarios c WHERE c.noticia_id = n.ID) AS total_comentarios
-            FROM noticias_img nm
-            LEFT JOIN noticias n ON n.ID = nm.noticia_id
-            ORDER BY n.ID DESC LIMIT 2;
+           SELECT n.ID AS ID_noticias, n.Nombre, n.Descripcion, n.Etiquetas, Img, n.Estado, Fecha, Usuario, (SELECT COUNT(*) FROM comentarios c WHERE c.noticia_id = n.ID) AS total_comentarios FROM noticias_img nm LEFT JOIN noticias n ON n.ID = nm.noticia_id ORDER BY n.ID DESC LIMIT 2
         ");
 
         $noticias = [];
@@ -49,7 +45,7 @@ if ($method === 'GET') {
       elseif ($action === 'noticiasrecientes') {
         $result = $conn->query("
             SELECT n.ID AS ID_noticias, n.Nombre, n.Descripcion, n.Etiquetas, Img, n.Estado, Fecha, Usuario,
-            (SELECT COUNT(*) FROM Comentarios c WHERE c.noticia_id = n.ID) AS total_comentarios
+            (SELECT COUNT(*) FROM comentarios c WHERE c.noticia_id = n.ID) AS total_comentarios
             FROM noticias_img nm
             LEFT JOIN noticias n ON n.ID = nm.noticia_id
             ORDER BY n.ID DESC LIMIT 5;
@@ -72,7 +68,7 @@ if ($method === 'GET') {
         $id = intval($_GET['id']);
         $stmt = $conn->prepare("
             SELECT n.ID AS ID_noticias, n.Nombre, n.Descripcion, n.Etiquetas, Img, n.Estado, Fecha, Usuario,
-            (SELECT COUNT(*) FROM Comentarios c WHERE c.noticia_id = n.ID) AS total_comentarios
+            (SELECT COUNT(*) FROM comentarios c WHERE c.noticia_id = n.ID) AS total_comentarios
             FROM noticias_img nm
             LEFT JOIN noticias n ON n.ID = nm.noticia_id
             WHERE n.ID = ?
