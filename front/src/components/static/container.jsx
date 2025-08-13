@@ -12,11 +12,11 @@ const menuItems = [
   { name: "Configuracion", icon: <Icons.Cog />, href: "/admin/usuarios" },
 ];
 
-export default function Container({ empresa }) {
+export default function Container({ empresa, decoded }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  console.log(empresa);
+  console.log(decoded);
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -88,8 +88,10 @@ export default function Container({ empresa }) {
           <Icons.ShieldUser size={28} className="text-gray-500" />
           {!sidebarCollapsed && (
             <div className="truncate">
-              <p className="text-gray-700 font-semibold truncate">Juan Pérez</p>
-              <p className="text-sm text-gray-400 truncate">Administrador</p>
+              <p className="text-gray-700 font-semibold truncate">
+                {decoded.nombre}
+              </p>
+              <p className="text-sm text-gray-400 truncate">{decoded.rol}</p>
             </div>
           )}
         </div>
@@ -137,7 +139,7 @@ export default function Container({ empresa }) {
             <div className="flex items-center gap-2 cursor-pointer group relative select-none">
               <Icons.ShieldUser size={28} className="text-gray-500" />
               <span className="hidden md:block font-medium text-gray-700 group-hover:text-blue-600 transition truncate">
-                Juan Pérez
+                {decoded.nombre}
               </span>
               {/* Tooltip */}
               <div className="absolute right-0 top-full mt-2 w-40 bg-white border rounded shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity text-sm z-20">

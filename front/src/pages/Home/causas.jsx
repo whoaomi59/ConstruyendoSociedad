@@ -6,9 +6,7 @@ export default function Causas() {
   useEffect(() => {
     const Get = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost/ConstruyendoSociedad/API/controllers/causas.php"
-        );
+        const response = await axios.get("/controllers/causas.php");
         return setCausas(response.data);
       } catch (error) {
         alert(error);

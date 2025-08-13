@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login({ empresa }) {
   const [email, setEmail] = useState("");
@@ -32,12 +33,11 @@ export default function Login({ empresa }) {
           },
         }
       );
-      console.log(data);
-      if (data.success) {
+
+      if (data.token) {
         setSuccessMsg("Inicio de sesión exitoso.");
-        // Aquí puedes guardar el token o redirigir
-        // localStorage.setItem("token", data.token);
-        // window.location.href = "/dashboard";
+        sessionStorage.setItem("token", data.token);
+        window.location.href = "/admin";
       } else {
         setErrorMsg(data.error || "Credenciales inválidas.");
       }

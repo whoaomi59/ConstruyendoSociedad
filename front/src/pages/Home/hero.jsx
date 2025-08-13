@@ -6,9 +6,7 @@ export default function HeroHome() {
   useEffect(() => {
     const Get = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost/ConstruyendoSociedad/API/controllers/baner.php"
-        );
+        const response = await axios.get("/controllers/baner.php");
         return setBaner(response.data);
       } catch (error) {
         alert(error);
