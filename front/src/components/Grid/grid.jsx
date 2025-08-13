@@ -126,7 +126,7 @@ const Grid = ({
                     <td className="p-4 space-x-2">
                       {!buttonedit && (
                         <button
-                          className="p-2 rounded bg-primary text-white hover:bg-gray-400 m-0.5"
+                          className="p-2 rounded bg-blue-500 text-white hover:bg-gray-400 m-0.5"
                           title="Editar"
                           onClick={() => {
                             setEditingItem(row);
@@ -181,7 +181,7 @@ const Grid = ({
                   <div className="flex space-x-2">
                     {!buttonedit && (
                       <button
-                        className="p-2 rounded-full bg-primary text-white hover:bg-gray-600"
+                        className="p-2 rounded-full bg-blue-500 text-white hover:bg-gray-600"
                         title="Editar"
                         onClick={() => {
                           setEditingItem(row);
