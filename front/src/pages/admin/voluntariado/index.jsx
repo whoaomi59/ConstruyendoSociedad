@@ -4,7 +4,7 @@ import Grid from "../../../components/grid/grid";
 import { fields, ModelsUsuarios } from "./models";
 import Loader from "../../../components/content/loader";
 
-export default function Noticias({ decoded }) {
+export default function Voluntariado({ decoded }) {
   const [data, setdata] = useState([]);
   const [refresh, setrefresh] = useState([]);
   const [loader, setloader] = useState(false);
@@ -12,7 +12,7 @@ export default function Noticias({ decoded }) {
   const handleFormSubmit = async (newData) => {
     try {
       if (newData.ID) {
-        let response = await axios.put("/controllers/noticias.php", newData, {
+        let response = await axios.put("/controllers/voluntario.php", newData, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -20,13 +20,8 @@ export default function Noticias({ decoded }) {
         alert(response.data.message);
       } else {
         let response = await axios.post(
-          `/controllers/noticias.php`,
-          {
-            Nombre: newData.Nombre,
-            Descripcion: newData.Descripcion,
-            Etiquetas: newData.Etiquetas,
-            Usuario: decoded.nombre,
-          },
+          `/controllers/voluntario.php`,
+          newData,
           {
             headers: {
               "Content-Type": "multipart/form-data",
@@ -49,7 +44,7 @@ export default function Noticias({ decoded }) {
     if (!confirmDelete) return;
 
     try {
-      const response = await axios.delete("/controllers/noticias.php", {
+      const response = await axios.delete("/controllers/voluntario.php", {
         data: { ID: row.ID },
         headers: {
           "Content-Type": "application/json",
@@ -63,19 +58,11 @@ export default function Noticias({ decoded }) {
     }
   };
 
-  const Redirect = (hrf, record) => {
-    if (hrf == "img") {
-      window.location.href = `/admin/noticias/img/${record.ID}`;
-    } else {
-      window.location.href = `/admin/noticias/message/${record.ID}`;
-    }
-  };
-
   useEffect(() => {
     const Get = async () => {
       try {
         setloader(true);
-        let response = await axios.get("/controllers/noticias.php");
+        let response = await axios.get("/controllers/voluntario.php");
         setdata(response.data);
         return setloader(false);
       } catch (error) {
@@ -92,22 +79,12 @@ export default function Noticias({ decoded }) {
 
   return (
     <Grid
-      module={"Noticias"}
+      module={"Voluntariado"}
       columns={ModelsUsuarios}
       data={data}
       fields={fields}
       handleFormSubmit={handleFormSubmit}
       actions={[
-        {
-          icon: "ImageMinus",
-          className: "bg-gray-500 text-white",
-          onClick: (record) => Redirect("img", record),
-        },
-        /*  {
-          icon: "MessagesSquare",
-          className: "bg-green-500 text-white",
-          onClick: (record) => Redirect("message", record),
-        }, */
         {
           icon: "Trash",
           className: "bg-red-500 text-white",

@@ -8,15 +8,18 @@ const menuItems = [
   { name: "Empresa", icon: <Icons.House />, href: "/admin/empresa" },
   { name: "Usuarios", icon: <Icons.User />, href: "/admin/usuarios" },
   { name: "Noticias", icon: <Icons.Newspaper />, href: "/admin/noticias" },
-  { name: "Voluntariado", icon: <Icons.Users />, href: "/admin/usuarios" },
-  { name: "Causas", icon: <Icons.Coffee />, href: "/admin/usuarios" },
-  { name: "Configuracion", icon: <Icons.Cog />, href: "/admin/usuarios" },
+  { name: "Voluntariado", icon: <Icons.Users />, href: "/admin/voluntariado" },
+  { name: "Causas", icon: <Icons.Coffee />, href: "/admin/causas" },
+  {
+    name: "Configuracion",
+    icon: <Icons.Cog />,
+    href: "/admin/configuraciones",
+  },
 ];
 
 export default function Container({ empresa, decoded }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  console.log(decoded.rol);
 
   return (
     <div className="flex  bg-gray-100">

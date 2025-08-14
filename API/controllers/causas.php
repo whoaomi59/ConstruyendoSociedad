@@ -41,6 +41,43 @@ if ($method === 'GET') {
     echo json_encode($empresas);
 }
 
-else {
-    echo json_encode(["message" => "Método HTTP no soportado"]);
+elseif ($method === 'POST') {
+
+    if (!isset($_POST['Nombre']) || !isset($_FILES['Img'])) {
+        echo json_encode(["message" => "Faltan campos obligatorios"]);
+        exit;
+    } 
+
+    $nombre = $_POST['Nombre'];
+    $descripcion = $_POST['Descripcion'];
+    $Img = file_get_contents($_FILES['Img']['tmp_name']);
+
+    $stmt = $conn->prepare("INSERT INTO causas (Nombre, Descripcion,Img) VALUES (:Nombre, :Descripcion,:Img)");
+    $stmt->bindParam(":Nombre", $nombre);
+    $stmt->bindParam(":Descripcion", $descripcion);
+    $stmt->bindParam(":Img", $Img, PDO::PARAM_LOB);
+
+    echo json_encode([
+        "message" => $stmt->execute() ? "Registro creado!" : "Error al crear"
+    ]);
+}
+
+elseif ($method === 'DELETE') {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+     if (!isset($data['ID'])) {
+        echo json_encode(["message" => "Datos incompletos para eliminado"]);
+        exit;
+    }
+
+    $id = $data['ID'];
+
+    $stmt = $conn->prepare("
+      DELETE FROM causas WHERE ID=:ID
+    ");
+    $stmt->bindParam(":ID", $id, PDO::PARAM_INT);
+
+    echo json_encode([
+        "message" => $stmt->execute() ? "Registro eliminado!" : "Error al eliminado registro!"
+    ]);
 }
