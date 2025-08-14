@@ -54,11 +54,17 @@ elseif ($method === 'POST') {
 
     $nombre = $_POST['Nombre'];
     $descripcion = $_POST['Descripcion'];
+    $email = $_POST['Email'];
+    $telefono = $_POST['Telefono'];
+    $ubicacion = $_POST['Ubicacion'];
     $logo = file_get_contents($_FILES['Logo']['tmp_name']);
 
-    $stmt = $conn->prepare("INSERT INTO empresa (Nombre, Descripcion, Logo) VALUES (:nombre, :descripcion, :logo)");
+    $stmt = $conn->prepare("INSERT INTO empresa (Nombre, Descripcion,Email,Telefono,Ubicacion, Logo) VALUES (:nombre, :descripcion,:email,:telefono,:ubicacion, :logo)");
     $stmt->bindParam(":nombre", $nombre);
     $stmt->bindParam(":descripcion", $descripcion);
+    $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":telefono", $telefono);
+    $stmt->bindParam(":ubicacion", $ubicacion);
     $stmt->bindParam(":logo", $logo, PDO::PARAM_LOB);
 
     echo json_encode([
