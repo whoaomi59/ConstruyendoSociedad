@@ -100,8 +100,13 @@ export default function Voluntariado({ empresa }) {
               </h4>
 
               <p className="text-white">
-                Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg
-                kohm tokito.
+                ¡Únete como voluntario y transforma vidas! En la Fundación
+                Construyendo Sociedad creemos que juntos podemos construir un
+                futuro mejor. Si tienes la disposición, el tiempo y el corazón
+                para ayudar, te invitamos a ser parte de nuestro equipo de
+                voluntarios. Tu apoyo puede marcar la diferencia en proyectos de
+                ayuda social, rehabilitación y acompañamiento a quienes más lo
+                necesitan.
               </p>
             </div>
           </div>
