@@ -25,7 +25,7 @@ if (!$conn) {
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     global $conn;
 
-    $stmt = $conn->query("SELECT * FROM noticias");
+    $stmt = $conn->query("SELECT * FROM sociefunda_bd.noticias order by ID desc");
 
     if ($stmt) {
         $data = [];
@@ -52,11 +52,13 @@ elseif ($method === 'POST') {
     $Nombre = $_POST['Nombre'];
     $Descripcion = $_POST['Descripcion'];
     $Etiquetas = $_POST['Etiquetas'];
+    $Usuario = $_POST['Usuario'];
 
-    $stmt = $conn->prepare("INSERT INTO noticias (Nombre, Descripcion, Etiquetas) VALUES (:Nombre, :Descripcion, :Etiquetas)");
+    $stmt = $conn->prepare("INSERT INTO noticias (Nombre, Descripcion, Etiquetas,Usuario) VALUES (:Nombre, :Descripcion, :Etiquetas,:Usuario)");
     $stmt->bindParam(":Nombre", $Nombre);
     $stmt->bindParam(":Descripcion", $Descripcion);
     $stmt->bindParam(":Etiquetas", $Etiquetas);
+    $stmt->bindParam(":Usuario", $Usuario);
 
     echo json_encode([
         "message" => $stmt->execute() ? "Registro creado!" : "Error al crear registro!"
@@ -66,21 +68,21 @@ elseif ($method === 'POST') {
 if ($method === 'PUT') {
     $data = json_decode(file_get_contents("php://input"), true);
 
-     if (!isset($put['ID'], $put['Nombre'], $put['Descripcion'])) {
+     if (!isset($data['ID'], $data['Nombre'], $data['Descripcion'])) {
         echo json_encode(["message" => "Datos incompletos para actualizar"]);
         exit;
     }
 
     $nombre = $data['Nombre'];
-    $correo = $data['Correo'];
+    $Descripcion = $data['Descripcion'];
+    $Etiquetas = $data['Etiquetas'];
     $id = $data['ID'];
-    $rol = $data['Rol'];
 
     $stmt = $conn->prepare("
        UPDATE noticias SET Nombre = :Nombre, Descripcion = :Descripcion,Etiquetas=:Etiquetas WHERE ID = :ID
     ");
 
-   $stmt->bindParam(":Nombre", $Nombre);
+   $stmt->bindParam(":Nombre", $nombre);
     $stmt->bindParam(":Descripcion", $Descripcion);
     $stmt->bindParam(":Etiquetas", $Etiquetas);
     $stmt->bindParam(":ID", $id, PDO::PARAM_INT);

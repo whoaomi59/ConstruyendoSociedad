@@ -4,10 +4,12 @@ import Grid from "../../../components/grid/grid";
 import { fields, ModelsUsuarios } from "./models";
 import Loader from "../../../components/content/loader";
 
-export default function Noticias() {
+export default function Noticias({ decoded }) {
   const [data, setdata] = useState([]);
   const [refresh, setrefresh] = useState([]);
   const [loader, setloader] = useState(false);
+
+  console.log(decoded);
 
   const handleFormSubmit = async (newData) => {
     try {
@@ -17,8 +19,7 @@ export default function Noticias() {
             "Content-Type": "application/json",
           },
         });
-
-        console.log(response);
+        alert(response.data.message);
       } else {
         let response = await axios.post(
           `/controllers/noticias.php`,
@@ -26,8 +27,7 @@ export default function Noticias() {
             Nombre: newData.Nombre,
             Descripcion: newData.Descripcion,
             Etiquetas: newData.Etiquetas,
-            Estado: 1,
-            Usuario: "Admin",
+            Usuario: decoded.nombre,
           },
           {
             headers: {
@@ -35,12 +35,11 @@ export default function Noticias() {
             },
           }
         );
-        console.log(response);
+        alert(response.data.message);
       }
-      setrefresh((prev) => !prev);
-      alert("Exito!");
+      return setrefresh((prev) => !prev);
     } catch (error) {
-      alert("Error!");
+      alert(error);
     }
   };
 
@@ -50,7 +49,6 @@ export default function Noticias() {
         setloader(true);
         let response = await axios.get("/controllers/noticias.php");
         setdata(response.data);
-        console.log(response.data);
         return setloader(false);
       } catch (error) {
         console.log(error);

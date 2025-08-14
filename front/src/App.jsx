@@ -79,7 +79,7 @@ function App() {
           <Route index element={<Dashboar />} />
           <Route path="usuarios" element={<Usuarios />} />
           <Route path="empresa" element={<Empresa />} />
-          <Route path="noticias" element={<Noticias />} />
+          <Route path="noticias" element={<Noticias decoded={TokenUser} />} />
         </Route>
 
         <Route path="*" element={<NotFount empresa={empresa} />} />
