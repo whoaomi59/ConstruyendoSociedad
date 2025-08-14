@@ -11,33 +11,30 @@ export default function Noticias() {
 
   const handleFormSubmit = async (newData) => {
     try {
-      if (newData.id) {
-        let response = await axios.put(
-          "/api/data/controller.php",
-          {
-            id: newData.id,
-            nombre: newData.nombre,
-            telefono: newData.telefono,
-            rol: newData.rol,
-            ApiKey: newData.ApiKey,
+      if (newData.ID) {
+        let response = await axios.put("/controllers/noticias.php", newData, {
+          headers: {
+            "Content-Type": "application/json",
           },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        });
 
         console.log(response);
       } else {
-        let response = await axios.post(`/api/usuarios/controller.php`, {
-          email: newData.email,
-          empresa_id: 1,
-          nombre: newData.nombre,
-          password: newData.password,
-          rol: newData.rol,
-          telefono: newData.telefono,
-        });
+        let response = await axios.post(
+          `/controllers/noticias.php`,
+          {
+            Nombre: newData.Nombre,
+            Descripcion: newData.Descripcion,
+            Etiquetas: newData.Etiquetas,
+            Estado: 1,
+            Usuario: "Admin",
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         console.log(response);
       }
       setrefresh((prev) => !prev);
@@ -52,8 +49,8 @@ export default function Noticias() {
       try {
         setloader(true);
         let response = await axios.get("/controllers/noticias.php");
-        console.log(response.data);
         setdata(response.data);
+        console.log(response.data);
         return setloader(false);
       } catch (error) {
         console.log(error);
@@ -76,8 +73,13 @@ export default function Noticias() {
       handleFormSubmit={handleFormSubmit}
       actions={[
         {
-          icon: "KeyIcon",
+          icon: "ImageMinus",
           className: "bg-gray-500 text-white",
+          onClick: (record) => abrirModal(record),
+        },
+        {
+          icon: "MessagesSquare",
+          className: "bg-green-500 text-white",
           onClick: (record) => abrirModal(record),
         },
       ].filter(Boolean)}

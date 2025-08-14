@@ -10,20 +10,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-
 require_once("../config/db.php");
-
-
 
 $method = $_SERVER['REQUEST_METHOD'];
 $db = new Database();
 $conn = $db->connect();
 
-
-if (!isset($conn)) {
+if (!$conn) {
     echo json_encode(["error" => "Conexión no definida"]);
     exit;
 }
+
 //OK
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     global $conn;
@@ -66,7 +63,29 @@ elseif ($method === 'POST') {
     ]);
 }
 
+if ($method === 'PUT') {
+    $data = json_decode(file_get_contents("php://input"), true);
 
-else {
-    echo json_encode(["message" => "Método HTTP no soportado"]);
+     if (!isset($put['ID'], $put['Nombre'], $put['Descripcion'])) {
+        echo json_encode(["message" => "Datos incompletos para actualizar"]);
+        exit;
+    }
+
+    $nombre = $data['Nombre'];
+    $correo = $data['Correo'];
+    $id = $data['ID'];
+    $rol = $data['Rol'];
+
+    $stmt = $conn->prepare("
+       UPDATE noticias SET Nombre = :Nombre, Descripcion = :Descripcion,Etiquetas=:Etiquetas WHERE ID = :ID
+    ");
+
+   $stmt->bindParam(":Nombre", $Nombre);
+    $stmt->bindParam(":Descripcion", $Descripcion);
+    $stmt->bindParam(":Etiquetas", $Etiquetas);
+    $stmt->bindParam(":ID", $id, PDO::PARAM_INT);
+
+    echo json_encode([
+        "message" => $stmt->execute() ? "Registro actualizado!" : "Error al actualizar registro!"
+    ]);
 }
