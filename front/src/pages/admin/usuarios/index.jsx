@@ -11,40 +11,33 @@ export default function Usuarios() {
 
   const handleFormSubmit = async (newData) => {
     try {
-      if (newData.id) {
-        let response = await axios.put(
-          "/api/usuarios/controller.php",
-          {
-            id: newData.id,
-            nombre: newData.nombre,
-            telefono: newData.telefono,
-            rol: newData.rol,
-            ApiKey: newData.ApiKey,
+      if (newData.ID) {
+        let response = await axios.put("/controllers/usuarios.php", newData, {
+          headers: {
+            "Content-Type": "application/json",
           },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        console.log(response);
-      } else {
-        let response = await axios.post(`/api/usuarios/controller.php`, {
-          email: newData.email,
-          empresa_id: 1,
-          nombre: newData.nombre,
-          password: newData.password,
-          rol: newData.rol,
-          telefono: newData.telefono,
         });
-        console.log(response);
+        alert(response.data.message);
+      } else {
+        let response = await axios.post(`/controllers/usuarios.php`, newData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        alert(response.data.message);
       }
-      setrefresh((prev) => !prev);
-      alert("Exito!");
+      return setrefresh((prev) => !prev);
     } catch (error) {
-      alert("Error!");
+      return alert(error);
     }
+  };
+
+  const abrirModal = (item) => {
+    window.open(
+      `/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7dasdddss/${item.ID}`,
+      "popup",
+      "width=700,height=600"
+    );
   };
 
   useEffect(() => {

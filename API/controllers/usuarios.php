@@ -43,27 +43,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 
 if ($method === 'POST') {
-    if (!isset($_POST['nombre'], $_POST['correo'], $_POST['rol'], $_POST['contraseña'])) {
+    if (!isset($_POST['Nombre'], $_POST['Correo'], $_POST['Rol'])) {
         echo json_encode(["message" => "Faltan campos obligatorios"]);
         exit;
     }
 
-    $nombre = $_POST['nombre'];
-    $correo = $_POST['correo'];
-    $rol = $_POST['rol'];
-    $contrasena = password_hash($_POST['contraseña'], PASSWORD_DEFAULT); // Sin ñ en la variable
+    $nombre = $_POST['Nombre'];
+    $correo = $_POST['Correo'];
+    $rol = $_POST['Rol'];
+   /*  $contrasena = password_hash($_POST['contraseña'], PASSWORD_DEFAULT); */
 
     $stmt = $conn->prepare("
-        INSERT INTO usuarios (Nombre, Correo, Rol, Contraseña) 
-        VALUES (:nombre, :correo, :rol, :contrasena)
+        INSERT INTO usuarios (Nombre, Correo, Rol) 
+        VALUES (:Nombre, :Correo, :Rol)
     ");
 
-    $stmt->bindParam(":nombre", $nombre);
-    $stmt->bindParam(":correo", $correo);
-    $stmt->bindParam(":rol", $rol);
-    $stmt->bindParam(":contrasena", $contrasena);
+    $stmt->bindParam(":Nombre", $nombre);
+    $stmt->bindParam(":Correo", $correo);
+    $stmt->bindParam(":Rol", $rol);
+  /*   $stmt->bindParam(":contrasena", $contrasena); */
 
     echo json_encode([
         "message" => $stmt->execute() ? "Registro creado!" : "Error al crear registro!"
+    ]);
+}
+
+
+if ($method === 'PUT') {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    if (!isset($data['Nombre'], $data['Correo'], $data['Rol'], $data['ID'])) {
+        echo json_encode(["message" => "Faltan campos obligatorios"]);
+        exit;
+    }
+
+    $nombre = $data['Nombre'];
+    $correo = $data['Correo'];
+    $id = $data['ID'];
+    $rol = $data['Rol'];
+
+    $stmt = $conn->prepare("
+        UPDATE usuarios 
+        SET Nombre = :Nombre, Correo = :Correo, Rol = :Rol 
+        WHERE ID = :ID
+    ");
+
+    $stmt->bindParam(":Nombre", $nombre);
+    $stmt->bindParam(":Correo", $correo);
+    $stmt->bindParam(":Rol", $rol);
+    $stmt->bindParam(":ID", $id, PDO::PARAM_INT);
+
+    echo json_encode([
+        "message" => $stmt->execute() ? "Registro actualizado!" : "Error al actualizar registro!"
     ]);
 }

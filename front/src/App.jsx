@@ -13,6 +13,7 @@ import NotFount from "./components/static/notFount";
 import { jwtDecode } from "jwt-decode";
 import Empresa from "./pages/admin/empresa";
 import Noticias from "./pages/admin/noticias";
+import Restablecimiento from "./pages/auth/restablecimiento";
 
 export const URL = "http://localhost/ConstruyendoSociedad/API/";
 /* export const URL = "https://fundacionconstruyendosociedad.com/API/"; */
@@ -61,6 +62,10 @@ function App() {
         <Route
           path="/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7da"
           element={<Login empresa={empresa} />}
+        />
+        <Route
+          path="/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7dasdddss/:id"
+          element={<Restablecimiento empresa={empresa} />}
         />
         <Route path="/" element={<Layout empresa={empresa} />}>
           <Route index element={<Home empresa={empresa} />} />
