@@ -1,13 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function Voluntariado() {
+export default function Voluntariado({ empresa }) {
   const [Nombre, setNombre] = useState("");
   const [Email, setEmail] = useState("");
   const [Comentario, setComentario] = useState("");
   const [mensaje, setMensaje] = useState("");
 
-  console.log(Comentario);
+  console.log(empresa);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,9 +89,9 @@ export default function Voluntariado() {
 
           <div className="col-lg-6 col-12">
             <img
-              src="images/smiling-casual-woman-dressed-volunteer-t-shirt-with-badge.jpg"
+              src={empresa.Logo}
               className="volunteer-image img-fluid"
-              alt=""
+              alt={empresa.Nombre}
             />
 
             <div className="custom-block-body text-center">
