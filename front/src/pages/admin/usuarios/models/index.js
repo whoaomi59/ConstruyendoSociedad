@@ -7,21 +7,16 @@ export const ModelsUsuarios = [
 ];
 
 export const fields = [
-  { name: "nombre", label: "Nombre", type: "text" },
-  { name: "email", label: "Correo", type: "email" },
-  { name: "telefono", label: "Telefono", type: "number" },
-  { name: "ApiKey", label: "Key Api whatsApp", type: "number" },
+  { name: "Nombre", label: "Nombre", type: "text" },
+  { name: "Correo", label: "Correo", type: "email" },
   {
-    name: "rol",
+    name: "Rol",
     label: "Rol",
     type: "select",
     options: [
-      { value: "admin", label: "admin" },
-      { value: "negocio", label: "negocio" },
-      { value: "cliente", label: "cliente" },
-      { value: "domiciliario", label: "domiciliario" },
+      { value: "Administrador", label: "Administrador" },
+      { value: "Invitado", label: "Invitado" },
     ],
   },
-  { name: "password", label: "Password", type: "text" },
-  { name: "id", label: "ID", type: "number", disable: true },
+  { name: "ID", label: "ID", type: "number", disable: true },
 ];

@@ -4,46 +4,70 @@ import Grid from "../../../components/grid/grid";
 import { fields, ModelsUsuarios } from "./models";
 import Loader from "../../../components/content/loader";
 
-export default function Noticias() {
+export default function Noticias({ decoded }) {
   const [data, setdata] = useState([]);
   const [refresh, setrefresh] = useState([]);
   const [loader, setloader] = useState(false);
 
   const handleFormSubmit = async (newData) => {
     try {
-      if (newData.id) {
-        let response = await axios.put(
-          "/api/data/controller.php",
+      if (newData.ID) {
+        let response = await axios.put("/controllers/noticias.php", newData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        alert(response.data.message);
+      } else {
+        let response = await axios.post(
+          `/controllers/noticias.php`,
           {
-            id: newData.id,
-            nombre: newData.nombre,
-            telefono: newData.telefono,
-            rol: newData.rol,
-            ApiKey: newData.ApiKey,
+            Nombre: newData.Nombre,
+            Descripcion: newData.Descripcion,
+            Etiquetas: newData.Etiquetas,
+            Usuario: decoded.nombre,
           },
           {
             headers: {
-              "Content-Type": "application/json",
+              "Content-Type": "multipart/form-data",
             },
           }
         );
-
-        console.log(response);
-      } else {
-        let response = await axios.post(`/api/usuarios/controller.php`, {
-          email: newData.email,
-          empresa_id: 1,
-          nombre: newData.nombre,
-          password: newData.password,
-          rol: newData.rol,
-          telefono: newData.telefono,
-        });
-        console.log(response);
+        alert(response.data.message);
       }
-      setrefresh((prev) => !prev);
-      alert("Exito!");
+      return setrefresh((prev) => !prev);
     } catch (error) {
-      alert("Error!");
+      alert(error);
+    }
+  };
+
+  const DeleteRegister = async (row) => {
+    const confirmDelete = window.confirm(
+      "¿Estás seguro de que deseas eliminar este registro?"
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      const response = await axios.delete("/controllers/noticias.php", {
+        data: { ID: row.ID },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      setrefresh((prev) => !prev);
+      alert(response.data.message);
+    } catch (error) {
+      alert("Error al eliminar: " + error);
+    }
+  };
+
+  const Redirect = (hrf) => {
+    if (hrf == "img") {
+      window.location.href = "/admin/noticias/img";
+    } else {
+      window.location.href = "/admin/noticias/message";
     }
   };
 
@@ -52,7 +76,6 @@ export default function Noticias() {
       try {
         setloader(true);
         let response = await axios.get("/controllers/noticias.php");
-        console.log(response.data);
         setdata(response.data);
         return setloader(false);
       } catch (error) {
@@ -76,9 +99,19 @@ export default function Noticias() {
       handleFormSubmit={handleFormSubmit}
       actions={[
         {
-          icon: "KeyIcon",
+          icon: "ImageMinus",
           className: "bg-gray-500 text-white",
-          onClick: (record) => abrirModal(record),
+          onClick: (record) => Redirect("img"),
+        },
+        {
+          icon: "MessagesSquare",
+          className: "bg-green-500 text-white",
+          onClick: (record) => Redirect("message"),
+        },
+        {
+          icon: "Trash",
+          className: "bg-red-500 text-white",
+          onClick: (record) => DeleteRegister(record),
         },
       ].filter(Boolean)}
     />

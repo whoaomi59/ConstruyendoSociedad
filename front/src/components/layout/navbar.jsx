@@ -3,7 +3,7 @@ import * as Icons from "lucide-react";
 import { RoutesHome } from "../../mock/axios";
 import Donar from "../../pages/Home/donar";
 
-export default function Navbar({ empresa }) {
+export default function Navbar({ empresa, decoded }) {
   const [isOpen, setIsOpen] = useState(false);
   const [OpenModal, setOpenModal] = useState(false);
 
@@ -52,12 +52,21 @@ export default function Navbar({ empresa }) {
               >
                 Donar
               </a>
-              <a
-                href="/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7da"
-                className="hover:bg-blue-400  px-4 py-2 border border-blue-500 text-white rounded transition bg-blue-500 ml-2"
-              >
-                Ingresar
-              </a>
+              {decoded.Toke ? (
+                <a
+                  href="/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7da"
+                  className="hover:bg-blue-400  px-4 py-2 border border-blue-500 text-white rounded transition bg-blue-500 ml-2"
+                >
+                  Ingresar
+                </a>
+              ) : (
+                <a
+                  href="/admin"
+                  className="hover:bg-blue-400  px-4 py-2 border border-blue-500 text-white rounded transition bg-blue-500 ml-2"
+                >
+                  Administrar
+                </a>
+              )}
             </li>
           </ul>
           <Donar OpenModal={OpenModal} setOpenModal={setOpenModal} />

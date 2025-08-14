@@ -13,9 +13,12 @@ import NotFount from "./components/static/notFount";
 import { jwtDecode } from "jwt-decode";
 import Empresa from "./pages/admin/empresa";
 import Noticias from "./pages/admin/noticias";
+import Restablecimiento from "./pages/auth/restablecimiento";
+import Noticias_Img from "./pages/admin/noticias/complements/img";
+import Noticias_Message from "./pages/admin/noticias/complements/message";
 
-/* export const URL = "http://localhost/ConstruyendoSociedad/API/"; */
-export const URL = "https://fundacionconstruyendosociedad.com/API/";
+export const URL = "http://localhost/ConstruyendoSociedad/API/";
+/* export const URL = "https://fundacionconstruyendosociedad.com/API/"; */
 
 function App() {
   const [empresa, setEmpresa] = useState({});
@@ -62,7 +65,14 @@ function App() {
           path="/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7da"
           element={<Login empresa={empresa} />}
         />
-        <Route path="/" element={<Layout empresa={empresa} />}>
+        <Route
+          path="/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7dasdddss/:id"
+          element={<Restablecimiento empresa={empresa} />}
+        />
+        <Route
+          path="/"
+          element={<Layout empresa={empresa} decoded={TokenUser} />}
+        >
           <Route index element={<Home empresa={empresa} />} />
           <Route path="prueba" element={<div>prueba</div>} />
         </Route>
@@ -74,7 +84,12 @@ function App() {
           <Route index element={<Dashboar />} />
           <Route path="usuarios" element={<Usuarios />} />
           <Route path="empresa" element={<Empresa />} />
-          <Route path="noticias" element={<Noticias />} />
+          <Route path="noticias" element={<Noticias decoded={TokenUser} />} />
+          <Route path="noticias/img" element={<Noticias_Img />} />
+          <Route
+            path="noticias/message"
+            element={<Noticias_Message decoded={TokenUser} />}
+          />
         </Route>
 
         <Route path="*" element={<NotFount empresa={empresa} />} />
