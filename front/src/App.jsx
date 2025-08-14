@@ -20,8 +20,8 @@ import Voluntariado from "./pages/admin/voluntariado";
 import Causas from "./pages/admin/causas";
 import Configuraciones from "./pages/admin/configuraciones";
 
-export const URL = "http://localhost/ConstruyendoSociedad/API/";
-/* export const URL = "https://fundacionconstruyendosociedad.com/API/"; */
+/* export const URL = "http://localhost/ConstruyendoSociedad/API/"; */
+export const URL = "https://fundacionconstruyendosociedad.com/API/";
 
 function App() {
   const [empresa, setEmpresa] = useState({});
