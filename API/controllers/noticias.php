@@ -94,7 +94,7 @@ elseif ($method === 'DELETE') {
     $data = json_decode(file_get_contents("php://input"), true);
 
      if (!isset($data['ID'])) {
-        echo json_encode(["message" => "Datos incompletos para ELIMINAR"]);
+        echo json_encode(["message" => "Datos incompletos para eliminado"]);
         exit;
     }
 
@@ -106,6 +106,6 @@ elseif ($method === 'DELETE') {
     $stmt->bindParam(":ID", $id, PDO::PARAM_INT);
 
     echo json_encode([
-        "message" => $stmt->execute() ? "Registro ELIMINADO!" : "Error al ELIMINAR registro!"
+        "message" => $stmt->execute() ? "Registro eliminado!" : "Error al eliminado registro!"
     ]);
 }

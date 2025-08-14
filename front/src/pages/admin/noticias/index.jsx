@@ -42,6 +42,12 @@ export default function Noticias({ decoded }) {
   };
 
   const DeleteRegister = async (row) => {
+    const confirmDelete = window.confirm(
+      "¿Estás seguro de que deseas eliminar este registro?"
+    );
+
+    if (!confirmDelete) return;
+
     try {
       const response = await axios.delete("/controllers/noticias.php", {
         data: { ID: row.ID },
@@ -49,9 +55,19 @@ export default function Noticias({ decoded }) {
           "Content-Type": "application/json",
         },
       });
+
+      setrefresh((prev) => !prev);
       alert(response.data.message);
     } catch (error) {
-      alert(error);
+      alert("Error al eliminar: " + error);
+    }
+  };
+
+  const Redirect = (hrf) => {
+    if (hrf == "img") {
+      window.location.href = "/admin/noticias/img";
+    } else {
+      window.location.href = "/admin/noticias/message";
     }
   };
 
@@ -85,12 +101,12 @@ export default function Noticias({ decoded }) {
         {
           icon: "ImageMinus",
           className: "bg-gray-500 text-white",
-          onClick: (record) => abrirModal(record),
+          onClick: (record) => Redirect("img"),
         },
         {
           icon: "MessagesSquare",
           className: "bg-green-500 text-white",
-          onClick: (record) => abrirModal(record),
+          onClick: (record) => Redirect("message"),
         },
         {
           icon: "Trash",

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as Icons from "lucide-react";
 import { Outlet } from "react-router-dom";
+import Alert_Access from "../content/alert_access";
 
 const menuItems = [
   { name: "Dashboard", icon: <Icons.ChartPie />, href: "/admin" },
@@ -15,6 +16,7 @@ const menuItems = [
 export default function Container({ empresa, decoded }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  console.log(decoded.rol);
 
   return (
     <div className="flex  bg-gray-100">
@@ -44,10 +46,8 @@ export default function Container({ empresa, decoded }) {
           <button
             onClick={() => {
               if (window.innerWidth < 768) {
-                // En móvil solo abrir/cerrar sidebar
                 setSidebarOpen(!sidebarOpen);
               } else {
-                // En desktop colapsar/expandir sidebar
                 setSidebarCollapsed(!sidebarCollapsed);
               }
             }}
@@ -147,7 +147,7 @@ export default function Container({ empresa, decoded }) {
         </header>
         <main className="flex-1 p-4 overflow-auto bg-gray-50 min-h-0">
           <div className="max-w-7xl mx-auto w-full">
-            <Outlet />
+            {decoded.rol == "Administrador" ? <Outlet /> : <Alert_Access />}
           </div>
         </main>
       </div>
