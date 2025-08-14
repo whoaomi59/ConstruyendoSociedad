@@ -21,7 +21,6 @@ if (!$conn) {
     exit;
 }
 
-//OK
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     global $conn;
 
@@ -42,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 }
 
-//OK
 elseif ($method === 'POST') {
     if (!isset($_POST['Nombre'], $_POST['Descripcion'])) {
         echo json_encode(["message" => "Faltan campos obligatorios"]);
@@ -89,5 +87,25 @@ if ($method === 'PUT') {
 
     echo json_encode([
         "message" => $stmt->execute() ? "Registro actualizado!" : "Error al actualizar registro!"
+    ]);
+}
+
+elseif ($method === 'DELETE') {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+     if (!isset($data['ID'])) {
+        echo json_encode(["message" => "Datos incompletos para ELIMINAR"]);
+        exit;
+    }
+
+    $id = $data['ID'];
+
+    $stmt = $conn->prepare("
+      DELETE FROM noticias WHERE ID=:ID
+    ");
+    $stmt->bindParam(":ID", $id, PDO::PARAM_INT);
+
+    echo json_encode([
+        "message" => $stmt->execute() ? "Registro ELIMINADO!" : "Error al ELIMINAR registro!"
     ]);
 }

@@ -9,8 +9,6 @@ export default function Noticias({ decoded }) {
   const [refresh, setrefresh] = useState([]);
   const [loader, setloader] = useState(false);
 
-  console.log(decoded);
-
   const handleFormSubmit = async (newData) => {
     try {
       if (newData.ID) {
@@ -38,6 +36,20 @@ export default function Noticias({ decoded }) {
         alert(response.data.message);
       }
       return setrefresh((prev) => !prev);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const DeleteRegister = async (row) => {
+    try {
+      const response = await axios.delete("/controllers/noticias.php", {
+        data: { ID: row.ID },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      alert(response.data.message);
     } catch (error) {
       alert(error);
     }
@@ -79,6 +91,11 @@ export default function Noticias({ decoded }) {
           icon: "MessagesSquare",
           className: "bg-green-500 text-white",
           onClick: (record) => abrirModal(record),
+        },
+        {
+          icon: "Trash",
+          className: "bg-red-500 text-white",
+          onClick: (record) => DeleteRegister(record),
         },
       ].filter(Boolean)}
     />
