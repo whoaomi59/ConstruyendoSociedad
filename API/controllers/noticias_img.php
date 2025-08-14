@@ -25,15 +25,22 @@ if (!isset($conn)) {
 }
 
 
-
 if ($method === 'GET') {
     global $conn;
 
-    $result = $conn->query("SELECT ID, Img, Estado, noticia_id FROM noticias_img");
+    $id = isset($_GET['id']) ? intval($_GET['id']) : null;
+
+    if ($id) {
+        $stmt = $conn->prepare("SELECT ID, Img, Estado, noticia_id FROM noticias_img WHERE noticia_id = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+    } else {
+        $stmt = $conn->query("SELECT ID, Img, Estado, noticia_id FROM noticias_img");
+    }
 
     $empresas = [];
 
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if (!empty($row['Img'])) {
             $row['Img'] = "data:image/png;base64," . base64_encode($row['Img']);
         } else {
@@ -45,11 +52,13 @@ if ($method === 'GET') {
     echo json_encode($empresas);
 }
 
+
 elseif ($method === 'POST') {
+
     if (!isset($_POST['noticia_id']) || !isset($_FILES['Img'])) {
         echo json_encode(["message" => "Faltan campos obligatorios"]);
         exit;
-    }
+    } 
 
     $noticia_id = $_POST['noticia_id'];
     $Img = file_get_contents($_FILES['Img']['tmp_name']);
@@ -63,6 +72,22 @@ elseif ($method === 'POST') {
     ]);
 }
 
-else {
-    echo json_encode(["message" => "Método HTTP no soportado"]);
+elseif ($method === 'DELETE') {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+     if (!isset($data['ID'])) {
+        echo json_encode(["message" => "Datos incompletos para eliminado"]);
+        exit;
+    }
+
+    $id = $data['ID'];
+
+    $stmt = $conn->prepare("
+      DELETE FROM noticias_img WHERE ID=:ID
+    ");
+    $stmt->bindParam(":ID", $id, PDO::PARAM_INT);
+
+    echo json_encode([
+        "message" => $stmt->execute() ? "Registro eliminado!" : "Error al eliminado registro!"
+    ]);
 }

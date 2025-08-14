@@ -63,11 +63,11 @@ export default function Noticias({ decoded }) {
     }
   };
 
-  const Redirect = (hrf) => {
+  const Redirect = (hrf, record) => {
     if (hrf == "img") {
-      window.location.href = "/admin/noticias/img";
+      window.location.href = `/admin/noticias/img/${record.ID}`;
     } else {
-      window.location.href = "/admin/noticias/message";
+      window.location.href = `/admin/noticias/message/${record.ID}`;
     }
   };
 
@@ -101,7 +101,7 @@ export default function Noticias({ decoded }) {
         {
           icon: "ImageMinus",
           className: "bg-gray-500 text-white",
-          onClick: (record) => Redirect("img"),
+          onClick: (record) => Redirect("img", record),
         },
         {
           icon: "MessagesSquare",

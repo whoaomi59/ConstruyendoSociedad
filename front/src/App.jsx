@@ -85,9 +85,9 @@ function App() {
           <Route path="usuarios" element={<Usuarios />} />
           <Route path="empresa" element={<Empresa />} />
           <Route path="noticias" element={<Noticias decoded={TokenUser} />} />
-          <Route path="noticias/img" element={<Noticias_Img />} />
+          <Route path="noticias/img/:id" element={<Noticias_Img />} />
           <Route
-            path="noticias/message"
+            path="noticias/message/:id"
             element={<Noticias_Message decoded={TokenUser} />}
           />
         </Route>
