@@ -1,48 +1,62 @@
 export default function Fundadores() {
+  const fundadores = [
+    {
+      nombre: "Elian Felipe",
+      rol: "Socio cofundador",
+      descripcion:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit eveniet sint porro.",
+      extra:
+        "No se permite redistribuir esta plantilla ZIP en otros sitios. Contacta a TemplateMo para más información.",
+      imagen:
+        "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyZmlsfGVufDB8fDB8fHww",
+    },
+    {
+      nombre: "Elian Felipe",
+      rol: "Socio cofundador",
+      descripcion:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit eveniet sint porro.",
+      extra:
+        "No se permite redistribuir esta plantilla ZIP en otros sitios. Contacta a TemplateMo para más información.",
+      imagen:
+        "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyZmlsfGVufDB8fDB8fHww",
+    },
+  ];
+
   return (
-    <section class="about-section section-padding">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-md-5 col-12">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyZmlsfGVufDB8fDB8fHww"
-              class="about-image ms-lg-auto bg-light shadow-lg img-fluid"
-              alt=""
-            />
-          </div>
+    <section className="bg-white py-12 px-4 sm:px-6 lg:px-12" id="fundadores">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-10">
+          Fundadores
+        </h2>
 
-          <div class="col-lg-5 col-md-7 col-12">
-            <div class="custom-text-block">
-              <h2 class="mb-0">Elian Felipe</h2>
+        <div className="space-y-12">
+          {fundadores.map((fundador, index) => (
+            <div
+              key={index}
+              className={`flex flex-col md:flex-row ${
+                index % 2 !== 0 ? "md:flex-row-reverse" : ""
+              } items-center gap-6`}
+            >
+              {/* Imagen más pequeña */}
+              <div className="w-full md:w-1/2">
+                <img
+                  src={fundador.imagen}
+                  alt={fundador.nombre}
+                  className="w-full h-70 object-cover rounded-lg shadow-md"
+                />
+              </div>
 
-              <p class="text-muted mb-lg-4 mb-md-4">Socio cofundador</p>
-
-              <p>
-                Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg
-                kohm tokito Professional charity theme based
-              </p>
-
-              <p>
-                You are not allowed to redistribute this template ZIP file on
-                any other template collection website. Please contact TemplateMo
-                for more information.
-              </p>
-
-              <ul class="social-icon mt-4">
-                <li class="social-icon-item">
-                  <a href="#" class="social-icon-link bi-twitter"></a>
-                </li>
-
-                <li class="social-icon-item">
-                  <a href="#" class="social-icon-link bi-facebook"></a>
-                </li>
-
-                <li class="social-icon-item">
-                  <a href="#" class="social-icon-link bi-instagram"></a>
-                </li>
-              </ul>
+              {/* Texto más pequeño */}
+              <div className="w-full md:w-1/2 text-gray-700 text-sm leading-relaxed">
+                <h3 className="text-lg font-semibold mb-1">
+                  {fundador.nombre}
+                </h3>
+                <p className="text-xs text-gray-500 mb-2">{fundador.rol}</p>
+                <p className="mb-2">{fundador.descripcion}</p>
+                <p>{fundador.extra}</p>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

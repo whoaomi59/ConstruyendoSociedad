@@ -1,6 +1,20 @@
-import { MockCausas } from "../../mock/causas";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Causas() {
+  const [causas, setCausas] = useState([]);
+  useEffect(() => {
+    const Get = async () => {
+      try {
+        const response = await axios.get("/controllers/causas.php");
+        return setCausas(response.data);
+      } catch (error) {
+        alert(error);
+      }
+    };
+    Get();
+  }, []);
+
   return (
     <section class="section-padding" id="section_3">
       <div class="container">
@@ -8,22 +22,41 @@ export default function Causas() {
           <div class="col-lg-12 col-12 text-center mb-4">
             <h2>Nuestras causas</h2>
           </div>
-          {MockCausas.map((item, index) => (
-            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-              <div class="custom-block-wrap">
+          {causas.map((item, index) => (
+            <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0" key={index}>
+              <div className="custom-block-wrap">
                 <img
-                  src={item.img}
-                  class="custom-block-image img-fluid"
+                  src={item.Img}
+                  className="custom-block-image img-fluid"
                   alt=""
+                  style={{
+                    height: "280px", // o 300px según lo necesites
+                    width: "100%",
+                    objectFit: "cover", // llena el contenedor recortando si es necesario
+                    borderRadius: "10px", // opcional
+                  }}
                 />
 
-                <div class="custom-block">
-                  <div class="custom-block-body">
-                    <h5 class="mb-3">{item.nombre}</h5>
+                <div className="custom-block">
+                  <div className="custom-block-body">
+                    <h5 className="mb-3">{item.Nombre}</h5>
+                    <p>{item.Descripcion}</p>
+                  </div>
 
-                    <p>{item.descripcion}</p>
-
-                    <div class="progress mt-4">
+                  <a href="donate.html" className="custom-btn btn">
+                    Dona ahora
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+{
+  /*  <div class="progress mt-4">
                       <div
                         class="progress-bar w-75"
                         role="progressbar"
@@ -42,18 +75,5 @@ export default function Causas() {
                       <p class="ms-auto mb-0">
                         <strong className="mr-2">Meta:</strong>${item.meta}
                       </p>
-                    </div>
-                  </div>
-
-                  <a href="donate.html" class="custom-btn btn">
-                    Dona ahora
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+                    </div> */
 }

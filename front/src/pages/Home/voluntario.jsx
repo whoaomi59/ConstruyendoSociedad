@@ -11,10 +11,6 @@ export default function Voluntario() {
           </div>
 
           <div class="col-lg-5 col-12">
-            <a href="#" class="me-4">
-              Haz una donación
-            </a>
-
             <a href="#section_4" class="custom-btn btn smoothscroll">
               Hazte voluntario
             </a>

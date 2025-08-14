@@ -1,22 +1,24 @@
 import { useState } from "react";
 import * as Icons from "lucide-react";
+import { RoutesHome } from "../../mock/axios";
+import Donar from "../../pages/Home/donar";
 
-export default function Navbar() {
+export default function Navbar({ empresa }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [OpenModal, setOpenModal] = useState(false);
 
   return (
     <nav className="shadow-lg p-3 bg-white sticky top-0 z-50">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
-        {/* Logo + Nombre */}
         <a href="/" className="flex items-center space-x-3">
           <img
-            src="./img/logos/logo 1.png"
-            alt="CONSTRUYENDO SOCIEDAD"
+            src={empresa.Logo}
+            alt={empresa.Nombre}
             className="h-12 w-auto"
           />
           <div className="text-left">
             <span className="block text-lg font-semibold text-blue-500">
-              CONSTRUYENDO SOCIEDAD
+              {empresa.Nombre}
             </span>
             <small className="block text-xs text-gray-600">FUNDACION</small>
           </div>
@@ -33,48 +35,32 @@ export default function Navbar() {
           }`}
         >
           <ul className="flex flex-col mt-4 lg:flex-row lg:space-x-6 lg:mt-0 text-gray-700 font-medium">
-            <li>
-              <a href="" className="text-blue-500 hover:text-blue-500 ">
-                Inicio
-              </a>
-            </li>
-            <li>
-              <a href="" className="hover:text-blue-500">
-                Nosotros
-              </a>
-            </li>
-            <li>
-              <a href="" className="hover:text-blue-500">
-                Causa
-              </a>
-            </li>
-            <li>
-              <a href="" className="hover:text-blue-500">
-                Voluntario
-              </a>
-            </li>
-            <li className="relative group">
-              <a
-                href="#section_5"
-                className="hover:text-blue-500 cursor-pointer"
-              >
-                Noticias
-              </a>
-            </li>
-            <li>
-              <a href="#section_6" className="hover:text-blue-500">
-                Contacto
-              </a>
-            </li>
+            {RoutesHome.map((item) => (
+              <li>
+                <a
+                  href={item.paht}
+                  className="text-blue-500 hover:text-blue-500 "
+                >
+                  {item.nombre}
+                </a>
+              </li>
+            ))}
             <li>
               <a
-                href=""
+                onClick={() => setOpenModal((prev) => !prev)}
                 className="hover:bg-blue-200   px-4 py-2 border border-blue-500 text-blue-500 rounded transition"
               >
                 Donar
               </a>
+              <a
+                href="/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7da"
+                className="hover:bg-blue-400  px-4 py-2 border border-blue-500 text-white rounded transition bg-blue-500 ml-2"
+              >
+                Ingresar
+              </a>
             </li>
           </ul>
+          <Donar OpenModal={OpenModal} setOpenModal={setOpenModal} />
         </div>
       </div>
     </nav>
