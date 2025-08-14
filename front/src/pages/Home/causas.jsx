@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Donar from "./donar";
 
 export default function Causas() {
   const [causas, setCausas] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [OpenModal, setOpenModal] = useState(false);
   useEffect(() => {
     const Get = async () => {
       try {
@@ -43,15 +46,19 @@ export default function Causas() {
                     <p>{item.Descripcion}</p>
                   </div>
 
-                  <a href="donate.html" className="custom-btn btn">
+                  <button
+                    onClick={() => setOpenModal((prev) => !prev)}
+                    className="custom-btn btn w-full"
+                  >
                     Dona ahora
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+      <Donar OpenModal={OpenModal} setOpenModal={setOpenModal} />
     </section>
   );
 }

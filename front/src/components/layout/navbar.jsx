@@ -6,9 +6,6 @@ import Donar from "../../pages/Home/donar";
 export default function Navbar({ empresa, decoded }) {
   const [isOpen, setIsOpen] = useState(false);
   const [OpenModal, setOpenModal] = useState(false);
-
-  console.log(decoded);
-
   return (
     <nav className="shadow-lg p-3 bg-white sticky top-0 z-50">
       <div className="container mx-auto flex flex-wrap items-center justify-between">

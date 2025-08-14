@@ -20,6 +20,16 @@ export default function Fundadores() {
       imagen:
         "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyZmlsfGVufDB8fDB8fHww",
     },
+    {
+      nombre: "Elian Felipe",
+      rol: "Socio cofundador",
+      descripcion:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit eveniet sint porro.",
+      extra:
+        "No se permite redistribuir esta plantilla ZIP en otros sitios. Contacta a TemplateMo para más información.",
+      imagen:
+        "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyZmlsfGVufDB8fDB8fHww",
+    },
   ];
 
   return (
