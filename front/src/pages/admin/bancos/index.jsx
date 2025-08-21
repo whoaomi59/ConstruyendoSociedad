@@ -40,12 +40,29 @@ export default function Bancos() {
     }
   };
 
-  const abrirModal = (item) => {
-    window.open(
-      `/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7dasdddss/${item.ID}`,
-      "popup",
-      "width=700,height=600"
+  const DeleteRegister = async (row) => {
+    const confirmDelete = window.confirm(
+      "¿Estás seguro de que deseas eliminar este registro?"
     );
+
+    if (!confirmDelete) return;
+
+    try {
+      const response = await axios.delete(
+        "/controllers/cuentas_bancarias.php",
+        {
+          data: { ID: row.ID },
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      setrefresh((prev) => !prev);
+      alert(response.data.message);
+    } catch (error) {
+      alert("Error al eliminar: " + error);
+    }
   };
 
   useEffect(() => {
@@ -78,7 +95,7 @@ export default function Bancos() {
         {
           icon: "Trash",
           className: "bg-red-500 text-white",
-          onClick: (record) => abrirModal(record),
+          onClick: (record) => DeleteRegister(record),
         },
       ].filter(Boolean)}
     />
