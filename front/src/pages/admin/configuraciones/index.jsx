@@ -5,12 +5,12 @@ export default function Configuraciones() {
   const opciones = [
     {
       titulo: "Baners",
-      descripcion: "Colores, temas y tipografías",
+      descripcion: "Fondos del inicio de la pagina.",
       icono: "🎨",
     },
     {
       titulo: "Cuentas Bancarias",
-      descripcion: "Conectar con otras plataformas",
+      descripcion: "Cuentas bancarias de la empresa.",
       icono: "🔗",
     },
   ];
@@ -45,7 +45,12 @@ export default function Configuraciones() {
 
   return (
     <div className="min-h-screen py-8 px-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+      <h1
+        className="text-3xl font-bold text-gray-800 mb-6 text-center"
+        style={{
+          fontSize: 35,
+        }}
+      >
         Configuraciones
       </h1>
 
@@ -57,8 +62,13 @@ export default function Configuraciones() {
             onClick={() => handleOpenModal(opcion)}
             className="bg-white rounded-xl shadow-md hover:shadow-lg transition p-6 cursor-pointer border border-gray-200 hover:border-blue-500"
           >
-            <div className="text-4xl mb-4">{opcion.icono}</div>
-            <h2 className="text-xl font-semibold text-gray-800">
+            <div className="text-3xl mb-4">{opcion.icono}</div>
+            <h2
+              className="text-xl font-semibold text-gray-800"
+              style={{
+                fontSize: 25,
+              }}
+            >
               {opcion.titulo}
             </h2>
             <p className="text-gray-600 mt-2">{opcion.descripcion}</p>
