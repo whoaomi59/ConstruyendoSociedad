@@ -25,7 +25,7 @@ if (!isset($conn)) {
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     global $conn;
 
-    $stmt = $conn->query("SELECT * FROM cuentas_bancarias");
+    $stmt = $conn->query("SELECT * FROM cuentas_bancarias ORDER BY ID DESC");
 
     if ($stmt) {
         $data = [];
