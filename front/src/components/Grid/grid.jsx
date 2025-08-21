@@ -44,7 +44,7 @@ const Grid = ({
       <h1
         className="font-extrabold text-gray-600 mb-2"
         style={{
-          fontSize: "45px",
+          fontSize: "30px",
         }}
       >
         {module}

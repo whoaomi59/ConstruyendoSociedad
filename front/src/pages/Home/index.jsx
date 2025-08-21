@@ -17,7 +17,7 @@ export default function Home({ empresa }) {
         <Fundadores />
         <Voluntario />
         <Causas />
-        <Voluntariado />
+        <Voluntariado empresa={empresa} />
         <Noticias />
 
         <section class="contact-section section-padding" id="section_6">

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function Voluntariado() {
+export default function Voluntariado({ empresa }) {
   const [Nombre, setNombre] = useState("");
   const [Email, setEmail] = useState("");
   const [Comentario, setComentario] = useState("");
   const [mensaje, setMensaje] = useState("");
 
-  console.log(Comentario);
+  console.log(empresa);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,9 +89,9 @@ export default function Voluntariado() {
 
           <div className="col-lg-6 col-12">
             <img
-              src="images/smiling-casual-woman-dressed-volunteer-t-shirt-with-badge.jpg"
+              src={empresa.Logo}
               className="volunteer-image img-fluid"
-              alt=""
+              alt={empresa.Nombre}
             />
 
             <div className="custom-block-body text-center">
@@ -100,8 +100,13 @@ export default function Voluntariado() {
               </h4>
 
               <p className="text-white">
-                Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg
-                kohm tokito.
+                ¡Únete como voluntario y transforma vidas! En la Fundación
+                Construyendo Sociedad creemos que juntos podemos construir un
+                futuro mejor. Si tienes la disposición, el tiempo y el corazón
+                para ayudar, te invitamos a ser parte de nuestro equipo de
+                voluntarios. Tu apoyo puede marcar la diferencia en proyectos de
+                ayuda social, rehabilitación y acompañamiento a quienes más lo
+                necesitan.
               </p>
             </div>
           </div>

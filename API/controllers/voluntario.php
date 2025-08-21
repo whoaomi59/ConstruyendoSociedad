@@ -66,7 +66,49 @@ elseif ($method === 'POST') {
     ]);
 }
 
+if ($method === 'PUT') {
+    $data = json_decode(file_get_contents("php://input"), true);
 
-else {
-    echo json_encode(["message" => "Método HTTP no soportado"]);
+     if (!isset($data['ID'], $data['Nombre'], $data['Email'])) {
+        echo json_encode(["message" => "Datos incompletos para actualizar"]);
+        exit;
+    }
+
+    $nombre = $data['Nombre'];
+    $Descripcion = $data['Email'];
+    $Etiquetas = $data['Comentario'];
+    $id = $data['ID'];
+
+    $stmt = $conn->prepare("
+       UPDATE voluntario SET Nombre = :Nombre, Email = :Email,Comentario=:Comentario WHERE ID = :ID
+    ");
+
+   $stmt->bindParam(":Nombre", $nombre);
+    $stmt->bindParam(":Email", $Descripcion);
+    $stmt->bindParam(":Comentario", $Etiquetas);
+    $stmt->bindParam(":ID", $id, PDO::PARAM_INT);
+
+    echo json_encode([
+        "message" => $stmt->execute() ? "Registro actualizado!" : "Error al actualizar registro!"
+    ]);
+}
+
+elseif ($method === 'DELETE') {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+     if (!isset($data['ID'])) {
+        echo json_encode(["message" => "Datos incompletos para eliminado"]);
+        exit;
+    }
+
+    $id = $data['ID'];
+
+    $stmt = $conn->prepare("
+      DELETE FROM voluntario WHERE ID=:ID
+    ");
+    $stmt->bindParam(":ID", $id, PDO::PARAM_INT);
+
+    echo json_encode([
+        "message" => $stmt->execute() ? "Registro eliminado!" : "Error al eliminado registro!"
+    ]);
 }

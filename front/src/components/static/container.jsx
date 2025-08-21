@@ -8,15 +8,18 @@ const menuItems = [
   { name: "Empresa", icon: <Icons.House />, href: "/admin/empresa" },
   { name: "Usuarios", icon: <Icons.User />, href: "/admin/usuarios" },
   { name: "Noticias", icon: <Icons.Newspaper />, href: "/admin/noticias" },
-  { name: "Voluntariado", icon: <Icons.Users />, href: "/admin/usuarios" },
-  { name: "Causas", icon: <Icons.Coffee />, href: "/admin/usuarios" },
-  { name: "Configuracion", icon: <Icons.Cog />, href: "/admin/usuarios" },
+  { name: "Voluntariado", icon: <Icons.Users />, href: "/admin/voluntariado" },
+  { name: "Causas", icon: <Icons.Coffee />, href: "/admin/causas" },
+  /*   {
+    name: "Configuracion",
+    icon: <Icons.Cog />,
+    href: "/admin/configuraciones",
+  }, */
 ];
 
 export default function Container({ empresa, decoded }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  console.log(decoded.rol);
 
   return (
     <div className="flex  bg-gray-100">
@@ -84,14 +87,17 @@ export default function Container({ empresa, decoded }) {
             ${sidebarCollapsed ? "justify-center" : ""}
           `}
         >
-          <Icons.ShieldUser size={28} className="text-gray-500" />
+          <Icons.Power size={20} className="text-red-500" />
           {!sidebarCollapsed && (
-            <div className="truncate">
-              <p className="text-gray-700 font-semibold truncate">
-                {decoded.nombre}
-              </p>
-              <p className="text-sm text-gray-400 truncate">{decoded.rol}</p>
-            </div>
+            <button
+              onClick={() => {
+                sessionStorage.removeItem("token");
+                window.location.href = "/";
+              }}
+              className="truncate"
+            >
+              Salir
+            </button>
           )}
         </div>
       </aside>

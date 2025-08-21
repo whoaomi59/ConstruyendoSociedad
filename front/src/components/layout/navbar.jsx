@@ -6,7 +6,6 @@ import Donar from "../../pages/Home/donar";
 export default function Navbar({ empresa, decoded }) {
   const [isOpen, setIsOpen] = useState(false);
   const [OpenModal, setOpenModal] = useState(false);
-
   return (
     <nav className="shadow-lg p-3 bg-white sticky top-0 z-50">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
@@ -52,19 +51,20 @@ export default function Navbar({ empresa, decoded }) {
               >
                 Donar
               </a>
-              {decoded.Toke ? (
-                <a
-                  href="/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7da"
-                  className="hover:bg-blue-400  px-4 py-2 border border-blue-500 text-white rounded transition bg-blue-500 ml-2"
-                >
-                  Ingresar
-                </a>
-              ) : (
+
+              {decoded.rol ? (
                 <a
                   href="/admin"
                   className="hover:bg-blue-400  px-4 py-2 border border-blue-500 text-white rounded transition bg-blue-500 ml-2"
                 >
                   Administrar
+                </a>
+              ) : (
+                <a
+                  href="/au5Z4YhReMcxh1r0WdbGNrGiMU7+j6CfaUrMxP2TGJNv7ZgI72muOl1gie2Lc7da"
+                  className="hover:bg-blue-400  px-4 py-2 border border-blue-500 text-white rounded transition bg-blue-500 ml-2"
+                >
+                  Ingresar
                 </a>
               )}
             </li>

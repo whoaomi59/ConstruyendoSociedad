@@ -16,9 +16,12 @@ import Noticias from "./pages/admin/noticias";
 import Restablecimiento from "./pages/auth/restablecimiento";
 import Noticias_Img from "./pages/admin/noticias/complements/img";
 import Noticias_Message from "./pages/admin/noticias/complements/message";
+import Voluntariado from "./pages/admin/voluntariado";
+import Causas from "./pages/admin/causas";
+import Configuraciones from "./pages/admin/configuraciones";
 
-export const URL = "http://localhost/ConstruyendoSociedad/API/";
-/* export const URL = "https://fundacionconstruyendosociedad.com/API/"; */
+/* export const URL = "http://localhost/ConstruyendoSociedad/API/"; */
+export const URL = "https://fundacionconstruyendosociedad.com/API/";
 
 function App() {
   const [empresa, setEmpresa] = useState({});
@@ -85,9 +88,13 @@ function App() {
           <Route path="usuarios" element={<Usuarios />} />
           <Route path="empresa" element={<Empresa />} />
           <Route path="noticias" element={<Noticias decoded={TokenUser} />} />
-          <Route path="noticias/img" element={<Noticias_Img />} />
+          <Route path="noticias/img/:id" element={<Noticias_Img />} />
+          <Route path="voluntariado" element={<Voluntariado />} />
+          <Route path="causas" element={<Causas />} />
+          <Route path="configuraciones" element={<Configuraciones />} />
+
           <Route
-            path="noticias/message"
+            path="noticias/message/:id"
             element={<Noticias_Message decoded={TokenUser} />}
           />
         </Route>
