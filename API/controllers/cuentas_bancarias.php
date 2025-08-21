@@ -10,10 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-
 require_once("../config/db.php");
-
-
 
 $method = $_SERVER['REQUEST_METHOD'];
 $db = new Database();
@@ -54,19 +51,12 @@ elseif ($method === 'POST') {
 
     $nombre = $_POST['Nombre'];
     $numero = $_POST['Numero'];
-    $icono = $_POST['Icono'];
 
-    $stmt = $conn->prepare("INSERT INTO cuentas_bancarias (Nombre, Numero, Icono) VALUES (:nombre, :numero, :icono)");
+    $stmt = $conn->prepare("INSERT INTO cuentas_bancarias (Nombre, Numero) VALUES (:nombre, :numero)");
     $stmt->bindParam(":nombre", $nombre);
     $stmt->bindParam(":numero", $numero);
-    $stmt->bindParam(":icono", $icono);
 
     echo json_encode([
         "message" => $stmt->execute() ? "Registro creado!" : "Error al crear registro!"
     ]);
-}
-
-
-else {
-    echo json_encode(["message" => "Método HTTP no soportado"]);
 }

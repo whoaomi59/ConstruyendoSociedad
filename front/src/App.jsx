@@ -19,6 +19,7 @@ import Noticias_Message from "./pages/admin/noticias/complements/message";
 import Voluntariado from "./pages/admin/voluntariado";
 import Causas from "./pages/admin/causas";
 import Configuraciones from "./pages/admin/configuraciones";
+import Bancos from "./pages/admin/bancos";
 
 /* export const URL = "http://localhost/ConstruyendoSociedad/API/"; */
 export const URL = "https://fundacionconstruyendosociedad.com/API/";
@@ -91,7 +92,10 @@ function App() {
           <Route path="noticias/img/:id" element={<Noticias_Img />} />
           <Route path="voluntariado" element={<Voluntariado />} />
           <Route path="causas" element={<Causas />} />
-          <Route path="configuraciones" element={<Configuraciones />} />
+          <Route path="configuraciones">
+            <Route index element={<Configuraciones />} />
+            <Route path="bancos" element={<Bancos />} />
+          </Route>
 
           <Route
             path="noticias/message/:id"
