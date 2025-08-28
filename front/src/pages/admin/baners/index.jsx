@@ -23,7 +23,7 @@ export default function BanersAdmin() {
         );
         alert(response.data.message);
       } else {
-        let response = await axios.post(`/controllers/causas.php`, newData, {
+        let response = await axios.post(`/controllers/baner.php`, newData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -44,15 +44,12 @@ export default function BanersAdmin() {
     if (!confirmDelete) return;
 
     try {
-      const response = await axios.delete(
-        "/controllers/cuentas_bancarias.php",
-        {
-          data: { ID: row.ID },
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.delete("/controllers/baner.php", {
+        data: { ID: row.ID },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       setrefresh((prev) => !prev);
       alert(response.data.message);
