@@ -22,8 +22,8 @@ import Configuraciones from "./pages/admin/configuraciones";
 import Bancos from "./pages/admin/bancos";
 import BanersAdmin from "./pages/admin/baners";
 
-/* export const URL = "http://localhost/ConstruyendoSociedad/API/"; */
-export const URL = "https://fundacionconstruyendosociedad.com/API/";
+export const URL = "http://localhost/ConstruyendoSociedad/API/";
+/* export const URL = "https://fundacionconstruyendosociedad.com/API/"; */
 
 function App() {
   const [empresa, setEmpresa] = useState({});
