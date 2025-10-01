@@ -3,7 +3,8 @@ import axios from "axios";
 
 export default function Historia() {
   const [data, setdata] = useState([]);
-
+  const [dataimg, setdataimg] = useState([]);
+  //Funcioal✅
   useEffect(() => {
     const Get = async () => {
       try {
@@ -14,17 +15,25 @@ export default function Historia() {
         console.log("Error al consultar❌");
       }
     };
+    const Get_img = async () => {
+      try {
+        let data = await axios.get("/controllers/historia_img.php");
+        console.log(data);
+        setdataimg(data.data[0]);
+      } catch (error) {
+        console.log("Error al consultar❌");
+      }
+    };
+    Get_img();
     Get();
   }, []);
   return (
     <section className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-20" id="section_2">
-      <pre>{JSON.stringify(data, null, 2)}</pre>
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Imagen */}
           <div>
             <img
-              src="images/group-people-volunteering-foodbank-poor-people.jpg"
+              src={dataimg.Img}
               alt="Nuestra historia"
               className="w-full h-auto rounded-xl shadow-md object-cover"
             />
