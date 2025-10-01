@@ -20,9 +20,10 @@ export default function Fundadores() {
   return (
     <section className="bg-white py-12 px-4 sm:px-6 lg:px-12" id="fundadores">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-10">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-10 mt-20">
           Fundadores
         </h2>
+        <br />
 
         <div className="space-y-12">
           {data.map((fundador, index) => (
