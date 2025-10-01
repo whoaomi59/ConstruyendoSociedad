@@ -17,8 +17,6 @@ export default function Fundadores() {
     Get();
   }, []);
 
-  console.log(data);
-
   return (
     <section className="bg-white py-12 px-4 sm:px-6 lg:px-12" id="fundadores">
       <div className="max-w-6xl mx-auto">

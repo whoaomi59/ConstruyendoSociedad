@@ -4,16 +4,17 @@ import Grid from "../../../components/grid/grid";
 import { fields, ModelsUsuarios } from "./models";
 import Loader from "../../../components/content/loader";
 
-export default function BanersAdmin() {
+export default function FundadoresAdmin() {
   const [data, setUsuarios] = useState([]);
   const [refresh, setrefresh] = useState([]);
   const [loader, setloader] = useState(false);
 
+  //Funcional✅
   const handleFormSubmit = async (newData) => {
     try {
       if (newData.ID) {
         let response = await axios.post(
-          "/controllers/baner_update.php",
+          "/controllers/fundadores_update.php",
           newData,
           {
             headers: {
@@ -23,11 +24,15 @@ export default function BanersAdmin() {
         );
         alert(response.data.message);
       } else {
-        let response = await axios.post(`/controllers/baner.php`, newData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        let response = await axios.post(
+          `/controllers/fundadores.php`,
+          newData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         alert(response.data.message);
       }
       return setrefresh((prev) => !prev);
@@ -35,7 +40,7 @@ export default function BanersAdmin() {
       alert(error);
     }
   };
-
+  //Funcional✅
   const DeleteRegister = async (row) => {
     const confirmDelete = window.confirm(
       "¿Estás seguro de que deseas eliminar este registro?"
@@ -44,7 +49,7 @@ export default function BanersAdmin() {
     if (!confirmDelete) return;
 
     try {
-      const response = await axios.delete("/controllers/baner.php", {
+      const response = await axios.delete("/controllers/fundadores.php", {
         data: { ID: row.ID },
         headers: {
           "Content-Type": "application/json",
@@ -57,12 +62,12 @@ export default function BanersAdmin() {
       alert("Error al eliminar: " + error);
     }
   };
-
+  //Funcional✅
   useEffect(() => {
     const Get = async () => {
       try {
         setloader(true);
-        let response = await axios.get("/controllers/baner.php");
+        let response = await axios.get("/controllers/fundadores.php");
         setUsuarios(response.data);
         return setloader(false);
       } catch (error) {
@@ -72,19 +77,11 @@ export default function BanersAdmin() {
     };
     Get();
   }, [refresh]);
-
+  //Funcional✅
   const Formater = data.map((item) => ({
     ID: item.ID,
     Nombre: item.Nombre,
-    Img: (
-      <img
-        src={item.Img}
-        style={{
-          width: "100px",
-          height: "100px",
-        }}
-      />
-    ),
+    Img: <img src={item.Img} className="w-20" />,
     Descripcion: item.Descripcion,
   }));
 
@@ -94,7 +91,7 @@ export default function BanersAdmin() {
 
   return (
     <Grid
-      module={"Baners"}
+      module={"Fundadores"}
       columns={ModelsUsuarios}
       data={Formater}
       fields={fields}

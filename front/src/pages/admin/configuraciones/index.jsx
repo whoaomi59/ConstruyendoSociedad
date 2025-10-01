@@ -12,6 +12,12 @@ export default function Configuraciones() {
       icono: "🔗",
       url: "/admin/configuraciones/bancos",
     },
+    {
+      titulo: "Fundadores",
+      descripcion: "Cuentas bancarias de la empresa.",
+      icono: "🛠️",
+      url: "/admin/configuraciones/fundadores",
+    },
   ];
 
   return (
