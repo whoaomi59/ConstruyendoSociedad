@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Causas from "./causas";
 import Fundadores from "./fundadores";
 import HeroHome from "./hero";
@@ -6,8 +7,23 @@ import Noticias from "./noticias";
 import Section from "./section";
 import Voluntariado from "./voluntariado";
 import Voluntario from "./voluntario";
+import axios from "axios";
 
 export default function Home({ empresa }) {
+  const [data, setdata] = useState([]);
+
+  useEffect(() => {
+    const Get = async () => {
+      try {
+        let data = await axios.get("/controllers/gerentes.php");
+        setdata(data.data);
+      } catch (error) {
+        console.log("Error consulta ❌");
+      }
+    };
+    Get();
+  }, []);
+
   return (
     <>
       <main>
@@ -19,28 +35,28 @@ export default function Home({ empresa }) {
         <Causas />
         <Voluntariado empresa={empresa} />
         <Noticias />
-
         <section class="contact-section section-padding" id="section_6">
           <div class="container">
             <div class="row">
               <div class="col-lg-4 col-12 ms-auto mb-5 mb-lg-0">
                 <div class="contact-info-wrap">
                   <h2>Ponte en contacto con nosotros</h2>
+                  {data.map((item) => (
+                    <div class="contact-image-wrap d-flex flex-wrap">
+                      <img
+                        src={item.Img}
+                        class="img-fluid avatar-image"
+                        alt=""
+                      />
 
-                  <div class="contact-image-wrap d-flex flex-wrap">
-                    <img
-                      src="images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg"
-                      class="img-fluid avatar-image"
-                      alt=""
-                    />
-
-                    <div class="d-flex flex-column justify-content-center ms-3">
-                      <p class="mb-0">Anna</p>
-                      <p class="mb-0">
-                        <strong>Gerente de Recursos Humanos y Oficina</strong>
-                      </p>
+                      <div class="d-flex flex-column justify-content-center ms-3">
+                        <p class="mb-0">{item.Nombre}</p>
+                        <p class="mb-0">
+                          <strong>{item.Descripcion}</strong>
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  ))}
 
                   <div class="contact-info">
                     <h5 class="mb-3">Información de contacto</h5>

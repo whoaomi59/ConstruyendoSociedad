@@ -23,6 +23,7 @@ import Bancos from "./pages/admin/bancos";
 import BanersAdmin from "./pages/admin/baners";
 import FundadoresAdmin from "./pages/admin/fundadores";
 import HistoriaAdmin from "./pages/admin/historia";
+import Gerentes from "./pages/admin/gerentes";
 
 export const URL = "http://localhost/ConstruyendoSociedad/API/";
 /* export const URL = "https://fundacionconstruyendosociedad.com/API/"; */
@@ -101,6 +102,7 @@ function App() {
             <Route path="baners" element={<BanersAdmin />} />
             <Route path="fundadores" element={<FundadoresAdmin />} />
             <Route path="historia" element={<HistoriaAdmin />} />
+            <Route path="gerentes" element={<Gerentes />} />
           </Route>
 
           <Route

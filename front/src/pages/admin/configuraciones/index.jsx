@@ -24,6 +24,12 @@ export default function Configuraciones() {
       icono: "🏆",
       url: "/admin/configuraciones/historia",
     },
+    {
+      titulo: "Genrentes",
+      descripcion: "Cuentas bancarias de la empresa.",
+      icono: "🔐",
+      url: "/admin/configuraciones/gerentes",
+    },
   ];
 
   return (
