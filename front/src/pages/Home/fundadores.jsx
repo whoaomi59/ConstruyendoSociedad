@@ -33,16 +33,13 @@ export default function Fundadores() {
                 index % 2 !== 0 ? "md:flex-row-reverse" : ""
               } items-center gap-6`}
             >
-              {/* Imagen más pequeña */}
               <div className="w-full md:w-1/2">
                 <img
                   src={fundador.Img}
                   alt={fundador.Nombre}
-                  className="w-full h-80 object-cover rounded-lg shadow-md"
+                  className="w-full h-120  rounded-lg shadow-md"
                 />
               </div>
-
-              {/* Texto más pequeño */}
               <div className="w-full md:w-1/2 text-gray-700 text-sm leading-relaxed">
                 <h3 className="text-lg font-semibold mb-1">
                   {fundador.Nombre}
