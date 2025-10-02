@@ -173,7 +173,7 @@ export default function HistoriaAdmin() {
         </div>
       </div>
       <Grid
-        module={"Cuentas"}
+        module={"Historia"}
         columns={ModelsUsuarios}
         data={usuarios}
         fields={fields}
