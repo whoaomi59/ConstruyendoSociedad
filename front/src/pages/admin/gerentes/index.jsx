@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Grid from "../../../components/grid/grid";
 import { fields, ModelsUsuarios } from "./models";
 import Loader from "../../../components/content/loader";
+import Grid from "../../../components/grid/grid";
 
 export default function Gerentes() {
   const [data, setUsuarios] = useState([]);
@@ -20,7 +20,7 @@ export default function Gerentes() {
             headers: {
               "Content-Type": "multipart/form-data",
             },
-          }
+          },
         );
         alert(response.data.message);
       } else {
@@ -39,7 +39,7 @@ export default function Gerentes() {
   //Funcional✅
   const DeleteRegister = async (row) => {
     const confirmDelete = window.confirm(
-      "¿Estás seguro de que deseas eliminar este registro?"
+      "¿Estás seguro de que deseas eliminar este registro?",
     );
 
     if (!confirmDelete) return;
