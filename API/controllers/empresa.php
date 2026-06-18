@@ -27,22 +27,23 @@ if (!isset($conn)) {
 
 
 if ($method === 'GET') {
-    global $conn;
+     global $conn;
 
-    $result = $conn->query("SELECT ID, Nombre, Descripcion, Logo,Telefono,Email,Ubicacion FROM empresa");
+    $stmt = $conn->query("SELECT ID, Nombre, Descripcion,Telefono,Email,Ubicacion FROM empresa");
 
-    $empresas = [];
+    if ($stmt) {
+        $data = [];
 
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        if (!empty($row['Logo'])) {
-            $row['Logo'] = "data:image/png;base64," . base64_encode($row['Logo']);
-        } else {
-            $row['Logo'] = null;
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = $row;
         }
-        $empresas[] = $row;
+        echo json_encode($data);
+    } else {
+        echo json_encode([
+            'error' => true,
+            'message' => 'Error en la consulta.'
+        ]);
     }
-
-    echo json_encode($empresas);
 }
 
 

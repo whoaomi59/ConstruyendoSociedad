@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Icons from "lucide-react";
 import { RoutesHome } from "../../mock/axios";
 import Donar from "../../pages/Home/donar";
@@ -6,15 +6,26 @@ import Donar from "../../pages/Home/donar";
 export default function Navbar({ empresa, decoded }) {
   const [isOpen, setIsOpen] = useState(false);
   const [OpenModal, setOpenModal] = useState(false);
+  const [logo, setLogo] = useState({});
+
+  useEffect(() => {
+    const Get = async () => {
+      try {
+        const response = await axios.get("controllers/empresa_logo.php");
+        setLogo(response.data[0]);
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+    Get();
+  }, []);
+  console.log(logo);
+
   return (
     <nav className="shadow-lg p-3 bg-white sticky top-0 z-50">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         <a href="/" className="flex items-center space-x-3">
-          <img
-            src={empresa.Logo}
-            alt={empresa.Nombre}
-            className="h-12 w-auto"
-          />
+          <img src={logo.Logo} alt={empresa.Nombre} className="h-12 w-auto" />
           <div className="text-left">
             <span className="block text-lg font-semibold text-blue-500">
               {empresa.Nombre}
