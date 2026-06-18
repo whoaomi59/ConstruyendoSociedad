@@ -14,11 +14,11 @@ export default function Causas() {
       try {
         setLoader(true);
         const response = await axios.get("/controllers/causas.php");
-        return setCausas(response.data);
-        setLoader(false);
+        setCausas(response.data);
+        return setLoader(false);
       } catch (error) {
-        setLoader(false);
         alert(error);
+        return setLoader(false);
       }
     };
     Get();

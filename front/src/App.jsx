@@ -94,7 +94,7 @@ function App() {
           path="/"
           element={<Layout empresa={empresa} decoded={TokenUser} logo={logo} />}
         >
-          <Route index element={<Home empresa={empresa} />} />
+          <Route index element={<Home empresa={empresa} logo={logo} />} />
           <Route path="/esal" element={<Esal />} />
         </Route>
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function Voluntariado({ empresa }) {
+export default function Voluntariado({ empresa, logo }) {
   const [Nombre, setNombre] = useState("");
   const [Email, setEmail] = useState("");
   const [Comentario, setComentario] = useState("");
@@ -87,7 +87,7 @@ export default function Voluntariado({ empresa }) {
 
           <div className="col-lg-6 col-12">
             <img
-              src={empresa.Logo}
+              src={logo.Logo}
               className="volunteer-image img-fluid"
               alt={empresa.Nombre}
             />

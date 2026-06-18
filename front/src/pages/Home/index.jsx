@@ -9,7 +9,7 @@ import Voluntariado from "./voluntariado";
 import Voluntario from "./voluntario";
 import axios from "axios";
 
-export default function Home({ empresa }) {
+export default function Home({ empresa, logo }) {
   const [data, setdata] = useState([]);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function Home({ empresa }) {
         <Fundadores />
         <Voluntario />
         <Causas />
-        <Voluntariado empresa={empresa} />
+        <Voluntariado empresa={empresa} logo={logo} />
         <Noticias />
         <section class="contact-section section-padding" id="section_6">
           <div class="container">
