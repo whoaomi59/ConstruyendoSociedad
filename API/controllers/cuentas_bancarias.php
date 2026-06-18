@@ -10,10 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-
 require_once("../config/db.php");
-
-
 
 $method = $_SERVER['REQUEST_METHOD'];
 $db = new Database();
@@ -28,7 +25,7 @@ if (!isset($conn)) {
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     global $conn;
 
-    $stmt = $conn->query("SELECT * FROM cuentas_bancarias");
+    $stmt = $conn->query("SELECT * FROM cuentas_bancarias ORDER BY ID DESC");
 
     if ($stmt) {
         $data = [];
@@ -54,19 +51,58 @@ elseif ($method === 'POST') {
 
     $nombre = $_POST['Nombre'];
     $numero = $_POST['Numero'];
-    $icono = $_POST['Icono'];
 
-    $stmt = $conn->prepare("INSERT INTO cuentas_bancarias (Nombre, Numero, Icono) VALUES (:nombre, :numero, :icono)");
+    $stmt = $conn->prepare("INSERT INTO cuentas_bancarias (Nombre, Numero) VALUES (:nombre, :numero)");
     $stmt->bindParam(":nombre", $nombre);
     $stmt->bindParam(":numero", $numero);
-    $stmt->bindParam(":icono", $icono);
 
     echo json_encode([
         "message" => $stmt->execute() ? "Registro creado!" : "Error al crear registro!"
     ]);
 }
 
+//OK
+if ($method === 'PUT') {
+    $data = json_decode(file_get_contents("php://input"), true);
 
-else {
-    echo json_encode(["message" => "Método HTTP no soportado"]);
+     if (!isset($data['ID'], $data['Nombre'], $data['Numero'])) {
+        echo json_encode(["message" => "Datos incompletos para actualizar"]);
+        exit;
+    }
+
+    $nombre = $data['Nombre'];
+    $numero = $data['Numero'];
+    $id = $data['ID'];
+
+    $stmt = $conn->prepare("
+       UPDATE cuentas_bancarias SET Nombre = :Nombre, Numero = :Numero WHERE ID = :ID
+    ");
+
+   $stmt->bindParam(":Nombre", $nombre);
+    $stmt->bindParam(":Numero", $numero);
+    $stmt->bindParam(":ID", $id, PDO::PARAM_INT);
+
+    echo json_encode([
+        "message" => $stmt->execute() ? "Registro actualizado!" : "Error al actualizar registro!"
+    ]);
+}
+//OK
+elseif ($method === 'DELETE') {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+     if (!isset($data['ID'])) {
+        echo json_encode(["message" => "Datos incompletos para eliminado"]);
+        exit;
+    }
+
+    $id = $data['ID'];
+
+    $stmt = $conn->prepare("
+      DELETE FROM cuentas_bancarias WHERE ID=:ID
+    ");
+    $stmt->bindParam(":ID", $id, PDO::PARAM_INT);
+
+    echo json_encode([
+        "message" => $stmt->execute() ? "Registro eliminado!" : "Error al eliminado registro!"
+    ]);
 }

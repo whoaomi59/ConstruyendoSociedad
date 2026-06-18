@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Icons from "lucide-react";
 import { RoutesHome } from "../../mock/axios";
 import Donar from "../../pages/Home/donar";
+import axios from "axios";
 
-export default function Navbar({ empresa, decoded }) {
+export default function Navbar({ empresa, decoded, logo }) {
   const [isOpen, setIsOpen] = useState(false);
   const [OpenModal, setOpenModal] = useState(false);
+
+  console.log(logo);
+
   return (
     <nav className="shadow-lg p-3 bg-white sticky top-0 z-50">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         <a href="/" className="flex items-center space-x-3">
-          <img
-            src={empresa.Logo}
-            alt={empresa.Nombre}
-            className="h-12 w-auto"
-          />
+          <img src={logo.Logo} alt={empresa.Nombre} className="h-12 w-auto" />
           <div className="text-left">
             <span className="block text-lg font-semibold text-blue-500">
               {empresa.Nombre}
@@ -45,6 +45,12 @@ export default function Navbar({ empresa, decoded }) {
               </li>
             ))}
             <li>
+              <a
+                href="/esal"
+                className="hover:bg-blue-200   px-4 py-2 border border-blue-500 text-blue-500 rounded transition mr-2"
+              >
+                ESAL
+              </a>
               <a
                 onClick={() => setOpenModal((prev) => !prev)}
                 className="hover:bg-blue-200   px-4 py-2 border border-blue-500 text-blue-500 rounded transition"

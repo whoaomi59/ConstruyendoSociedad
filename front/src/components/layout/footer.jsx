@@ -10,17 +10,13 @@ import {
 } from "lucide-react";
 import { RoutesHome } from "../../mock/axios";
 
-export default function Footer({ empresa }) {
+export default function Footer({ empresa, logo }) {
   return (
     <footer className="bg-orange-400 text-white pt-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap">
           <div className="w-full md:w-1/2 lg:w-1/4 mb-6">
-            <img
-              src={empresa.Logo}
-              alt={empresa.Nombre}
-              className="h-40 w-auto"
-            />
+            <img src={logo.Logo} alt={empresa.Nombre} className="h-40 w-auto" />
           </div>
           <div className="w-full md:w-1/2 lg:w-1/3 mb-6">
             <h5 className="text-white text-lg font-semibold mb-4">
@@ -31,7 +27,7 @@ export default function Footer({ empresa }) {
                 <li key={i}>
                   <a
                     href={link.paht}
-                    className="hover:text-blue-400 transition-colors duration-200"
+                    className="hover:text-blue-400 transition-colors duration-200 text-white"
                   >
                     {link.nombre}
                   </a>
@@ -46,21 +42,24 @@ export default function Footer({ empresa }) {
             </h5>
             <div className="space-y-3 text-sm">
               <p className="flex items-center gap-2">
-                <Phone size={16} />
-                <a href="tel:120-240-9600" className="hover:text-blue-400">
+                <Phone size={16} className="text-white" />
+                <a
+                  href="tel:120-240-9600"
+                  className="hover:text-blue-400 text-white"
+                >
                   {empresa.Telefono}
                 </a>
               </p>
               <p className="flex items-center gap-2">
-                <Mail size={16} />
+                <Mail size={16} className="text-white" />
                 <a
                   href="mailto:donate@charity.org"
-                  className="hover:text-blue-400"
+                  className="hover:text-blue-400 text-white"
                 >
                   {empresa.Email}
                 </a>
               </p>
-              <p className="flex items-start gap-2">
+              <p className="flex items-start gap-2 text-white">
                 <MapPin size={16} className="mt-0.5" />
                 {empresa.Ubicacion}
               </p>
@@ -70,21 +69,23 @@ export default function Footer({ empresa }) {
       </div>
       <div className="mt-5 p-2 border-t border-orange-500 pt-6">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-          <p className="flex space-x-4 mt-4 md:mt-0">© 2025</p>
-          <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="hover:text-blue-400">
+          <p className="flex space-x-4 mt-4 md:mt-0 text-white">
+            © 2025 / 2026
+          </p>
+          <div className="flex space-x-4 mt-4 md:mt-0 ">
+            <a href="#" className="hover:text-blue-400 text-white">
               <Twitter />
             </a>
-            <a href="#" className="hover:text-blue-400">
+            <a href="#" className="hover:text-blue-400 text-white">
               <Facebook />
             </a>
-            <a href="#" className="hover:text-blue-400">
+            <a href="#" className="hover:text-blue-400 text-white">
               <Instagram />
             </a>
-            <a href="#" className="hover:text-blue-400">
+            <a href="#" className="hover:text-blue-400 text-white">
               <Linkedin />
             </a>
-            <a href="#" className="hover:text-blue-400">
+            <a href="#" className="hover:text-blue-400 text-white">
               <Youtube />
             </a>
           </div>

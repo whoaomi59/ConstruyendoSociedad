@@ -19,6 +19,13 @@ import Noticias_Message from "./pages/admin/noticias/complements/message";
 import Voluntariado from "./pages/admin/voluntariado";
 import Causas from "./pages/admin/causas";
 import Configuraciones from "./pages/admin/configuraciones";
+import Bancos from "./pages/admin/bancos";
+import BanersAdmin from "./pages/admin/baners";
+import FundadoresAdmin from "./pages/admin/fundadores";
+import HistoriaAdmin from "./pages/admin/historia";
+import Gerentes from "./pages/admin/gerentes";
+import ESAL from "./pages/Esal";
+import Esal from "./pages/Esal";
 
 /* export const URL = "http://localhost/ConstruyendoSociedad/API/"; */
 export const URL = "https://fundacionconstruyendosociedad.com/API/";
@@ -27,6 +34,7 @@ function App() {
   const [empresa, setEmpresa] = useState({});
   const [loader, setLoader] = useState(false);
   const [TokenUser, setTokenUser] = useState(false);
+  const [logo, setLogo] = useState({});
 
   axios.defaults.baseURL = URL;
 
@@ -54,6 +62,16 @@ function App() {
         setLoader(false);
       }
     };
+    const Get_Logo = async () => {
+      try {
+        const response = await axios.get("controllers/empresa_logo.php");
+        setLogo(response.data[0]);
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+    Get_Logo();
+    console.log(logo);
     Get();
   }, []);
 
@@ -74,15 +92,17 @@ function App() {
         />
         <Route
           path="/"
-          element={<Layout empresa={empresa} decoded={TokenUser} />}
+          element={<Layout empresa={empresa} decoded={TokenUser} logo={logo} />}
         >
-          <Route index element={<Home empresa={empresa} />} />
-          <Route path="prueba" element={<div>prueba</div>} />
+          <Route index element={<Home empresa={empresa} logo={logo} />} />
+          <Route path="/esal" element={<Esal />} />
         </Route>
 
         <Route
           path="/admin"
-          element={<Container empresa={empresa} decoded={TokenUser} />}
+          element={
+            <Container empresa={empresa} decoded={TokenUser} logo={logo} />
+          }
         >
           <Route index element={<Dashboar />} />
           <Route path="usuarios" element={<Usuarios />} />
@@ -91,7 +111,14 @@ function App() {
           <Route path="noticias/img/:id" element={<Noticias_Img />} />
           <Route path="voluntariado" element={<Voluntariado />} />
           <Route path="causas" element={<Causas />} />
-          <Route path="configuraciones" element={<Configuraciones />} />
+          <Route path="configuraciones">
+            <Route index element={<Configuraciones />} />
+            <Route path="bancos" element={<Bancos />} />
+            <Route path="baners" element={<BanersAdmin />} />
+            <Route path="fundadores" element={<FundadoresAdmin />} />
+            <Route path="historia" element={<HistoriaAdmin />} />
+            <Route path="gerentes" element={<Gerentes />} />
+          </Route>
 
           <Route
             path="noticias/message/:id"

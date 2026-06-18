@@ -10,14 +10,14 @@ const menuItems = [
   { name: "Noticias", icon: <Icons.Newspaper />, href: "/admin/noticias" },
   { name: "Voluntariado", icon: <Icons.Users />, href: "/admin/voluntariado" },
   { name: "Causas", icon: <Icons.Coffee />, href: "/admin/causas" },
-  /*   {
+  {
     name: "Configuracion",
     icon: <Icons.Cog />,
     href: "/admin/configuraciones",
-  }, */
+  },
 ];
 
-export default function Container({ empresa, decoded }) {
+export default function Container({ empresa, decoded, logo }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
@@ -33,17 +33,13 @@ export default function Container({ empresa, decoded }) {
         `}
       >
         <div
-          className={`flex items-center justify-between h-16 px-4 border-b
+          className={`flex items-center justify-between h-16 px-4 border-b border-gray-400
             ${sidebarCollapsed ? "justify-center" : ""}
           `}
         >
           {!sidebarCollapsed && (
             <a href="/">
-              <img
-                src={empresa.Logo}
-                alt={empresa.Nombre}
-                className="h-12 w-15"
-              />
+              <img src={logo.Logo} alt={empresa.Nombre} className="h-12 w-15" />
             </a>
           )}
           <button
@@ -83,7 +79,7 @@ export default function Container({ empresa, decoded }) {
 
         {/* User Profile */}
         <div
-          className={`border-t px-4 py-4 flex items-center gap-3
+          className={`border-t border-gray-400 px-4 py-4 flex items-center gap-3
             ${sidebarCollapsed ? "justify-center" : ""}
           `}
         >

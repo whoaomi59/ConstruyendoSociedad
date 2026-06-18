@@ -1,48 +1,54 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 export default function Historia() {
+  const [data, setdata] = useState([]);
+  const [dataimg, setdataimg] = useState([]);
+  //Funcioal✅
+  useEffect(() => {
+    const Get = async () => {
+      try {
+        let data = await axios.get("/controllers/historia.php");
+        setdata(data.data);
+      } catch (error) {
+        console.log("Error al consultar❌");
+      }
+    };
+    const Get_img = async () => {
+      try {
+        let data = await axios.get("/controllers/historia_img.php");
+        setdataimg(data.data[0]);
+      } catch (error) {
+        console.log("Error al consultar❌");
+      }
+    };
+    Get_img();
+    Get();
+  }, []);
   return (
     <section className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-20" id="section_2">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Imagen */}
           <div>
             <img
-              src="images/group-people-volunteering-foodbank-poor-people.jpg"
+              src={dataimg.Img}
               alt="Nuestra historia"
               className="w-full h-auto rounded-xl shadow-md object-cover"
             />
           </div>
 
-          {/* Contenido */}
           <div className="space-y-8">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-2">
-                Nuestra historia
-              </h2>
-              <h5 className="text-lg text-gray-600 mb-4">
-                Construyendo Sociedad, organización sin fines de lucro
-              </h5>
-              <p className="text-sm text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
-                amet iste similique adipisci ratione, necessitatibus impedit
-                quisquam beatae dignissimos ullam sit ipsam illo quae, quos
-                delectus laudantium maxime a perferendis.
-              </p>
-            </div>
-
-            <div>
-              <h5 className="text-lg text-gray-700 font-semibold mb-3">
-                Nuestra misión
-              </h5>
-              <p className="text-sm text-gray-700 leading-relaxed">
-                Contribuir al bienestar y desarrollo integral de las comunidades
-                urbanas y rurales, priorizando a la población infantil, juvenil,
-                madres cabeza de hogar y adultos mayores, mediante programas
-                sociales, culturales, educativos, de salud física y mental,
-                ambientales, recreativos y de fortalecimiento comunitario.
-                Promovemos la participación activa, el empoderamiento ciudadano
-                y la construcción de entornos sanos, seguros y resilientes.
-              </p>
-            </div>
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+              Nuestra historia
+            </h2>
+            {data.map((item) => (
+              <div>
+                <h5 className="text-lg text-gray-600 mb-4">{item.Nombre}</h5>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  {item.Descripcion}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
