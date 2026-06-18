@@ -19,6 +19,26 @@ export default function Esal() {
       nombre: "Estados Financieros 2025",
       archivo: "/docs/ESTADOS FROS 2025 CONSTRUYENDO SOCIEDAD.pdf",
     },
+    {
+      nombre: "Certificación de Requisitos",
+      archivo: "/docs/CERTIFICACION DE REQUISITOS.pdf",
+    },
+    {
+      nombre: "Estatutos Fundación Construyendo Sociedad",
+      archivo: "/docs/ESTATUTOS - FUNDACIÓN CONSTRUYENDO SOCIEDAD SAH.pdf",
+    },
+    {
+      nombre: "Informe de Gestión 2025",
+      archivo: "/docs/INFORME DE GESTION 2025.pdf",
+    },
+    {
+      nombre: "Renta 2025",
+      archivo: "/docs/RENTA 2025.pdf",
+    },
+    {
+      nombre: "RUT Construyendo Sociedad 2026",
+      archivo: "/docs/RUT CONSTRUYENDO SOCIEDAD 2026.pdf",
+    },
   ];
 
   const [pdfSeleccionado, setPdfSeleccionado] = useState(documentos[0].archivo);
@@ -34,7 +54,7 @@ export default function Esal() {
             <button
               key={doc.archivo}
               onClick={() => setPdfSeleccionado(doc.archivo)}
-              className="w-full text-left p-4 rounded-xl border bg-white hover:bg-slate-50 hover:shadow transition"
+              className="w-full text-left p-2 rounded-xl border bg-white hover:bg-slate-50  hover:bg-red-300 transition flex items-center justify-between"
             >
               <p className="font-medium">{doc.nombre}</p>
               <ArrowRight />
