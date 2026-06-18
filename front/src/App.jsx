@@ -24,6 +24,8 @@ import BanersAdmin from "./pages/admin/baners";
 import FundadoresAdmin from "./pages/admin/fundadores";
 import HistoriaAdmin from "./pages/admin/historia";
 import Gerentes from "./pages/admin/gerentes";
+import ESAL from "./pages/Esal";
+import Esal from "./pages/Esal";
 
 /* export const URL = "http://localhost/ConstruyendoSociedad/API/"; */
 export const URL = "https://fundacionconstruyendosociedad.com/API/";
@@ -82,7 +84,7 @@ function App() {
           element={<Layout empresa={empresa} decoded={TokenUser} />}
         >
           <Route index element={<Home empresa={empresa} />} />
-          <Route path="prueba" element={<div>prueba</div>} />
+          <Route path="/esal" element={<Esal />} />
         </Route>
 
         <Route

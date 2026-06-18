@@ -45,7 +45,10 @@ export default function Navbar({ empresa, decoded }) {
               </li>
             ))}
             <li>
-              <a className="hover:bg-blue-200   px-4 py-2 border border-blue-500 text-blue-500 rounded transition mr-2">
+              <a
+                href="/esal"
+                className="hover:bg-blue-200   px-4 py-2 border border-blue-500 text-blue-500 rounded transition mr-2"
+              >
                 ESAL
               </a>
               <a
