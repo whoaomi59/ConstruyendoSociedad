@@ -2,23 +2,12 @@ import { useEffect, useState } from "react";
 import * as Icons from "lucide-react";
 import { RoutesHome } from "../../mock/axios";
 import Donar from "../../pages/Home/donar";
+import axios from "axios";
 
-export default function Navbar({ empresa, decoded }) {
+export default function Navbar({ empresa, decoded, logo }) {
   const [isOpen, setIsOpen] = useState(false);
   const [OpenModal, setOpenModal] = useState(false);
-  const [logo, setLogo] = useState({});
 
-  useEffect(() => {
-    const Get = async () => {
-      try {
-        const response = await axios.get("controllers/empresa_logo.php");
-        setLogo(response.data[0]);
-      } catch (error) {
-        console.warn(error);
-      }
-    };
-    Get();
-  }, []);
   console.log(logo);
 
   return (

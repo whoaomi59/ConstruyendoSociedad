@@ -7,8 +7,6 @@ export default function Voluntariado({ empresa }) {
   const [Comentario, setComentario] = useState("");
   const [mensaje, setMensaje] = useState("");
 
-  console.log(empresa);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 

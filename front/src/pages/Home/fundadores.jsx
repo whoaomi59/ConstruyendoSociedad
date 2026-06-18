@@ -8,7 +8,6 @@ export default function Fundadores() {
     const Get = async () => {
       try {
         let get = await axios.get(`/controllers/fundadores.php`);
-        console.log(get.data);
         return setData(get.data);
       } catch (error) {
         return console.log("Error Fundadores❌");

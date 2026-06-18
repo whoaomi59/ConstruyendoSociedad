@@ -9,7 +9,6 @@ export default function Historia() {
     const Get = async () => {
       try {
         let data = await axios.get("/controllers/historia.php");
-        console.log(data);
         setdata(data.data);
       } catch (error) {
         console.log("Error al consultar❌");
@@ -18,7 +17,6 @@ export default function Historia() {
     const Get_img = async () => {
       try {
         let data = await axios.get("/controllers/historia_img.php");
-        console.log(data);
         setdataimg(data.data[0]);
       } catch (error) {
         console.log("Error al consultar❌");

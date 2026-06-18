@@ -34,6 +34,7 @@ function App() {
   const [empresa, setEmpresa] = useState({});
   const [loader, setLoader] = useState(false);
   const [TokenUser, setTokenUser] = useState(false);
+  const [logo, setLogo] = useState({});
 
   axios.defaults.baseURL = URL;
 
@@ -61,6 +62,16 @@ function App() {
         setLoader(false);
       }
     };
+    const Get_Logo = async () => {
+      try {
+        const response = await axios.get("controllers/empresa_logo.php");
+        setLogo(response.data[0]);
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+    Get_Logo();
+    console.log(logo);
     Get();
   }, []);
 
@@ -81,7 +92,7 @@ function App() {
         />
         <Route
           path="/"
-          element={<Layout empresa={empresa} decoded={TokenUser} />}
+          element={<Layout empresa={empresa} decoded={TokenUser} logo={logo} />}
         >
           <Route index element={<Home empresa={empresa} />} />
           <Route path="/esal" element={<Esal />} />
