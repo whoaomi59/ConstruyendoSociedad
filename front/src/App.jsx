@@ -100,7 +100,9 @@ function App() {
 
         <Route
           path="/admin"
-          element={<Container empresa={empresa} decoded={TokenUser} />}
+          element={
+            <Container empresa={empresa} decoded={TokenUser} logo={logo} />
+          }
         >
           <Route index element={<Dashboar />} />
           <Route path="usuarios" element={<Usuarios />} />

@@ -1,22 +1,31 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Donar from "./donar";
+import { LoaderComponents } from "../../components/content/loader";
 
 export default function Causas() {
   const [causas, setCausas] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [OpenModal, setOpenModal] = useState(false);
+  const [loader, setLoader] = useState(false);
+
   useEffect(() => {
     const Get = async () => {
       try {
+        setLoader(true);
         const response = await axios.get("/controllers/causas.php");
         return setCausas(response.data);
+        setLoader(false);
       } catch (error) {
+        setLoader(false);
         alert(error);
       }
     };
     Get();
   }, []);
+  if (loader) {
+    return <LoaderComponents />;
+  }
 
   return (
     <section class="section-padding" id="section_3">

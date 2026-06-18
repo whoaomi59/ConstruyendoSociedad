@@ -17,7 +17,7 @@ const menuItems = [
   },
 ];
 
-export default function Container({ empresa, decoded }) {
+export default function Container({ empresa, decoded, logo }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
@@ -39,11 +39,7 @@ export default function Container({ empresa, decoded }) {
         >
           {!sidebarCollapsed && (
             <a href="/">
-              <img
-                src={empresa.Logo}
-                alt={empresa.Nombre}
-                className="h-12 w-15"
-              />
+              <img src={logo.Logo} alt={empresa.Nombre} className="h-12 w-15" />
             </a>
           )}
           <button
